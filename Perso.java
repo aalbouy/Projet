@@ -58,18 +58,18 @@ public class Perso{
         x=x+(int)(vitesse*dx);
         y=y+(int)(vitesse*dy);
         
-        /*if (x<limitesframe.x) x= limitesframe.x;
+        if (x<frame.x) x= frame.x;
                 else
-            if (x+l>limitesframe.x+limitesframe.width)
-                    x=limitesframe.x+limitesframe.width-l;
-        if (y<limitesframe.y) y= limitesframe.y;
+            if (x+l>frame.x+frame.width)
+                    x=frame.x+frame.width-l;
+        if (y<frame.y) y= frame.y;
                 else
-            if (y+h>limitesframe.y+limitesframe.height)
-                    y=limitesframe.y+limitesframe.height-h;
+            if (y+h>frame.y+frame.height)
+                    y=frame.y+frame.height-h;
         
-        limites.setLocation(x,y);*/
+        limites.setLocation(x,y);
         
-        //LOLXDLOL
+        
     }
     
     
