@@ -66,7 +66,7 @@ public class Perso{
                 else
             if (y+h>frame.y+frame.height)
                     y=frame.y+frame.height-h;
-        //SalutMatthieu
+        
         limites.setLocation(x,y);
         
         
