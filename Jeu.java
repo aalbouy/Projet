@@ -18,11 +18,11 @@ public class Jeu extends JFrame {
     long temps;
     BufferedImage ArrierePlan;
     Graphics buffer;
-    boolean ToucheGauche;
-    boolean ToucheDroite;
-    boolean ToucheHaut;
+    boolean ToucheGaucheJ1, ToucheGaucheJ2;
+    boolean ToucheDroiteJ1, ToucheDroiteJ2;
+    boolean ToucheHautJ1, ToucheHautJ2;
     Rectangle Ecran;
-    Perso res;
+    Perso j1, j2;
     int scoreP1;
     int scoreP2;
     Boolean finjeu;
@@ -32,11 +32,13 @@ public class Jeu extends JFrame {
     public static void main(String[] args) {
         Jeu Monjeu = new Jeu();
     }
+    
+    
     //Constructeur
     public Jeu() {
         super();
 
-        setSize(1020,680);
+        setSize(1000,600);
         
         scoreP1 = 0;
         scoreP2 = 0;
@@ -48,16 +50,13 @@ public class Jeu extends JFrame {
         buffer = ArrierePlan.getGraphics();
         
         timer = new Timer(20, new TimerAction());
-        res = new Perso(Ecran.width-100,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran);
+        j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1);
+        j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
         
-       
-     
-      
-        
-        
+        setTitle("Volley3000");
         setLocation(300,10);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,16 +70,20 @@ public class Jeu extends JFrame {
     public void paint( Graphics g ) {
         // remplire le buffer de noir
         buffer.setColor(Color.black);
-        buffer.fillRect(Ecran.x,Ecran.y,Ecran.x+Ecran.width,
-        Ecran.y+Ecran.height);
+        buffer.fillRect(Ecran.x,Ecran.y,Ecran.x+Ecran.width, Ecran.y+Ecran.height);
         // dessine TOUS les objets dans le buffer
-       
-        res.draw(temps, buffer);
+		// Filet
+        buffer.setColor(Color.green);
+		buffer.fillRect(490,Ecran.height-100,20,100);
+        
+		// Joueurs
+		j1.draw(temps, buffer);
+        j2.draw(temps, buffer);
         
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
         
-            buffer.setColor(Color.white);
+        buffer.setColor(Color.white);
            
         }
         
@@ -100,22 +103,34 @@ public class Jeu extends JFrame {
     public void boucle_principale_jeu(){
         
         // déplacement lateral du volemon
-        if (ToucheGauche) { res.dx = -1; res.dy= 0; }
+    	if (ToucheGaucheJ1) { j1.dx = -1; j1.dy= 0; }
         else 
-        if (ToucheDroite) { res.dx = 1; res.dy = 0; }
+        if (ToucheDroiteJ1) { j1.dx = 1; j1.dy = 0; }
         else{
-        	res.dx=0; 
-        	res.dy=0;
+        	j1.dx=0; 
+        	j1.dy=0;
         }
+        
+    	if (ToucheGaucheJ2) { j2.dx = -1; j2.dy= 0; }
+        else 
+        if (ToucheDroiteJ2) { j2.dx = 1; j2.dy = 0; }
+        else{
+        	j2.dx=0; 
+        	j2.dy=0;
+        }
+        
         // déplace le volemon sans le dessiner
-        res.move(temps);
+        j1.move(temps);
+        j2.move(temps);
         // force le rafraÃ®chissement de l'image et le dessin de l'objet
         repaint();
         
         
         
         // Sauter
-            
+        
+        	
+        	
         }
         
         
@@ -128,41 +143,62 @@ public class Jeu extends JFrame {
             int code = e.getKeyCode();
             
         if(code == KeyEvent.VK_SPACE){
-          ToucheHaut = true;  
+          ToucheHautJ2 = true;  
         }
         
         if(code == KeyEvent.VK_LEFT){
-          ToucheGauche = true;  
+          ToucheGaucheJ2 = true;  
         }
         
         if(code == KeyEvent.VK_RIGHT){
-          ToucheDroite = true;  
+          ToucheDroiteJ2 = true;  
         }
-                
+        
+        if(code == KeyEvent.VK_Q){
+        	ToucheGaucheJ1 = true;
+        }
+        
+        if(code == KeyEvent.VK_D){
+        	ToucheDroiteJ1 = true;
+        }
+        
+        if(code == KeyEvent.VK_Z){
+        	ToucheHautJ1 = true;
+        }
+        
         if(code == KeyEvent.VK_ENTER){
             if (timer.isRunning()) timer.stop();
             else timer.start();
         }
-        
-        
-        this.setTitle("Code clavier : "+Integer.toString(code));
-        
     }
         
         public void keyReleased(KeyEvent e) {
             int code = e.getKeyCode();
             
         if(code == KeyEvent.VK_SPACE){
-          ToucheHaut = false;  
+          ToucheHautJ2 = false;  
         }
         
         if(code == KeyEvent.VK_LEFT){
-          ToucheGauche = false;  
+          ToucheGaucheJ2 = false;  
         }
         
         if(code == KeyEvent.VK_RIGHT){
-          ToucheDroite = false;  
+          ToucheDroiteJ2 = false;  
         }
+        
+        if(code == KeyEvent.VK_Q){
+        	ToucheGaucheJ1 = false;
+        }
+        
+        if(code == KeyEvent.VK_D){
+        	ToucheDroiteJ1 = false;
+        }
+        
+        if(code == KeyEvent.VK_Z){
+        	ToucheHautJ1 = false;
+        }
+        
         }
         
         @Override
