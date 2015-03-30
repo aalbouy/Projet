@@ -68,8 +68,6 @@ public class Perso{
                     y=limitesframe.y+limitesframe.height-h;
         
         limites.setLocation(x,y);*/
-        
-        //LOLXDLOL
     }
     
     
