@@ -1,4 +1,4 @@
-package volemon;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,9 +30,10 @@ public class Menu extends JFrame {
             
     
     public Menu (){
-        gridLayoutPrincipal = new GridLayout(1,1);
+        gridLayoutPrincipal = new GridLayout(2,1);
         this.getContentPane().setLayout(gridLayoutPrincipal);
-        this.setSize( new Dimension(400, 300) );
+        this.setLocationRelativeTo(null);
+        this.setSize( new Dimension(1000, 600) );
         this.setTitle( "Volemon" ); 
         
         
@@ -40,7 +41,7 @@ public class Menu extends JFrame {
         this.two_player = new JButton("2 joueurs");
         this.three_player = new JButton("3 joueurs");
         this.four_player = new JButton("4 joueurs");
-        this.settings = new JButton("options");
+        this.settings = new JButton("Options");
         
         
         
@@ -50,26 +51,26 @@ public class Menu extends JFrame {
         jPanel1234.add(this.two_player);
         jPanel1234.add(this.three_player);
         jPanel1234.add(this.four_player);
-        
+        this.add(jPanel1234);
        
         
         JPanel jPaneloptions = new JPanel();
         jPaneloptions.setLayout(new GridLayout());
         jPaneloptions.add(this.settings);
+        this.add(jPaneloptions);
         
-        
-        this.pack();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        
-        
-        // gestion des événements: "addActionListener"
+     // gestion des événements: "addActionListener"
         GestionBouton gb = new GestionBouton();
         one_player.addActionListener(gb);
         two_player.addActionListener(gb);
         three_player.addActionListener(gb);
         four_player.addActionListener(gb);
         settings.addActionListener(gb);
+        
+        
+        this.pack();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
         
     }
     

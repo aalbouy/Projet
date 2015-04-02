@@ -27,6 +27,7 @@ public class Jeu extends JFrame {
     int scoreP2;
     Boolean finjeu;
     
+    
     // Liste de tous les objets du jeu (joueur1, joueur 2, balle, filet ?)
     
     public static void main(String[] args) {
@@ -50,8 +51,8 @@ public class Jeu extends JFrame {
         buffer = ArrierePlan.getGraphics();
         
         timer = new Timer(20, new TimerAction());
-        j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1);
-        j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2);
+        j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
+        j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -118,6 +119,11 @@ public class Jeu extends JFrame {
         	j2.dx=0; 
         	j2.dy=0;
         }
+    	
+        if (ToucheHautJ1) { j1.Jump = true; }
+        else { j1.Jump = false; }
+        if (ToucheHautJ2) { j2.Jump = true; }
+        else { j2.Jump = false; }
         
         // déplace le volemon sans le dessiner
         j1.move(temps);
@@ -142,7 +148,7 @@ public class Jeu extends JFrame {
         public void keyPressed(KeyEvent e) {
             int code = e.getKeyCode();
             
-        if(code == KeyEvent.VK_SPACE){
+        if(code == KeyEvent.VK_UP){
           ToucheHautJ2 = true;  
         }
         
@@ -175,7 +181,7 @@ public class Jeu extends JFrame {
         public void keyReleased(KeyEvent e) {
             int code = e.getKeyCode();
             
-        if(code == KeyEvent.VK_SPACE){
+        if(code == KeyEvent.VK_UP){
           ToucheHautJ2 = false;  
         }
         

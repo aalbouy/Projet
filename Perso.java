@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -9,7 +8,7 @@ import javax.imageio.ImageIO;
 public class Perso{
     
     //Attributs
-    public int x, y;
+    public double x, y;
     public int h, l;
     public float dx, dy;
     public float vitesse;
@@ -18,15 +17,17 @@ public class Perso{
     public Rectangle limitesframe;
     public Rectangle frame;
     public int numJoueur;
-   
+    public String color;
+    public double vy, vx;
+    public boolean Jump, EnLAir;
     
-    //léo
+    
     
     
     //Méthodes
     
     // Constructeur
-    public Perso(int ax,int ay, float adx, float ady, float avitesse, String NomImage, Rectangle aframe, int joueur){
+    public Perso(int ax,int ay, float adx, float ady, float avitesse, String NomImage, Rectangle aframe, int joueur, String acolor){
         x = ax;
         y = ay;
         dx = adx;
@@ -34,8 +35,11 @@ public class Perso{
         vitesse = avitesse ;
         frame = aframe;
         numJoueur = joueur;
-        
-        
+        color = acolor;
+        Jump = false;
+        EnLAir = false;
+        vy = 0;
+        vx = -11.2;
         
         try {
         	image= ImageIO.read(new File(NomImage));
@@ -51,10 +55,11 @@ public class Perso{
         // dÃ©finir les limites de l'objet pour les collisions et les sorties
         limites = new Rectangle(ax,ay,l,h);
     }
-        
-    
-    public void draw (long t, Graphics g){
-        g.drawImage(image,x,y,null);
+     
+
+
+	public void draw (long t, Graphics g){
+        g.drawImage(image,(int)x,(int)y,null);
     }
     public void move(long t){
         x=x+(int)(vitesse*dx);
@@ -84,8 +89,24 @@ public class Perso{
         	}
         }
         
+        //Tentative saut 
+        if(Jump == true){
+        	EnLAir = true;
+        }
+        if (EnLAir == true && vx<11.2){
+        	vx++;
+        	vy = -1.8*vx;
+        }
+        else{ vx = -11.2; vy = 0; EnLAir = false;}
+       
+        y = y - vy;
+        System.out.println(vy);
+        if(y>frame.height-50){
+        	y = frame.height-50;
+        }
         
-        limites.setLocation(x,y);
+        
+        limites.setLocation((int)x,(int)y);
         
         
     }
