@@ -34,7 +34,7 @@ public class Menu extends JFrame {
         this.getContentPane().setLayout(gridLayoutPrincipal);
         this.setLocationRelativeTo(null);
         this.setSize( new Dimension(1000, 600) );
-        this.setTitle( "Volemon" ); 
+        this.setTitle( "Volley3000" ); 
         
         
         this.one_player = new JButton("1 joueur");

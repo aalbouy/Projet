@@ -17,7 +17,7 @@ public class Perso{
     public Rectangle limitesframe;
     public Rectangle frame;
     public int numJoueur;
-    public String color;
+    public String color;	//LOL
     public double vy, vx;
     public boolean Jump, EnLAir;
     
@@ -49,10 +49,10 @@ public class Perso{
         	System.out.println("Mettre les images dans le repertoire :" + getClass().getClassLoader().getResource(NomImage));
         	System.exit(0);
         }
-        // récupère une fois pour toute la hauteur et largeur de l'image
+        // recupere une fois pour toute la hauteur et largeur de l'image
         h= image.getHeight(null);
         l= image.getWidth(null);
-        // définir les limites de l'objet pour les collisions et les sorties
+        // definir les limites de l'objet pour les collisions et les sorties
         limites = new Rectangle(ax,ay,l,h);
     }
      
@@ -61,11 +61,13 @@ public class Perso{
 	public void draw (long t, Graphics g){
         g.drawImage(image,(int)x,(int)y,null);
     }
+
+
     public void move(long t){
         x=x+(int)(vitesse*dx);
         y=y+(int)(vitesse*dy);
         
-        //Collisions bord de l'�cran
+        //Collisions avec le bord de l'ecran
         if (x<frame.x){
         	x= frame.x;
         }

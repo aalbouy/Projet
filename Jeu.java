@@ -28,7 +28,6 @@ public class Jeu extends JFrame {
     Boolean finjeu;
     
     
-    // Liste de tous les objets du jeu (joueur1, joueur 2, balle, filet ?)
     
     public static void main(String[] args) {
         Jeu Monjeu = new Jeu();
@@ -69,7 +68,7 @@ public class Jeu extends JFrame {
         }
     
     public void paint( Graphics g ) {
-        // remplire le buffer de noir
+        // remplir le buffer de noir
         buffer.setColor(Color.black);
         buffer.fillRect(Ecran.x,Ecran.y,Ecran.x+Ecran.width, Ecran.y+Ecran.height);
         // dessine TOUS les objets dans le buffer
@@ -120,6 +119,8 @@ public class Jeu extends JFrame {
         	j2.dy=0;
         }
     	
+
+	// Sauter
         if (ToucheHautJ1) { j1.Jump = true; }
         else { j1.Jump = false; }
         if (ToucheHautJ2) { j2.Jump = true; }
@@ -128,14 +129,10 @@ public class Jeu extends JFrame {
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
-        // force le rafraÃ®chissement de l'image et le dessin de l'objet
+
+        // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
         
-        
-        
-        // Sauter
-        
-        	
         	
         }
         
