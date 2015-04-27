@@ -102,7 +102,6 @@ public class Perso{
         else{ vx = -11.2; vy = 0; EnLAir = false;}
        
         y = y - vy;
-        System.out.println(vy);
         if(y>frame.height-50){
         	y = frame.height-50;
         }
