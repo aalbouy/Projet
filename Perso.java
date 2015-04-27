@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -59,7 +60,8 @@ public class Perso{
 
 
 	public void draw (long t, Graphics g){
-        g.drawImage(image,(int)x,(int)y,null);
+		g.setColor(Color.red);
+		g.fillArc(180, 550, 100, 100, 0, 180);
     }
 
 
