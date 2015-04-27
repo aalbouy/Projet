@@ -9,11 +9,9 @@ import javax.imageio.ImageIO;
 public class Perso{
     
     //Attributs
-    public int x, y;
-    public int h, l;
+    public int x, y, rayon;
     public float dx, dy;
     public float vitesse;
-    public Image image;
     public Rectangle limites;
     public Rectangle limitesframe;
     public Rectangle frame;
@@ -41,6 +39,7 @@ public class Perso{
         EnLAir = false;
         vy = 0;
         vx = -11.2;
+        rayon = 50;
     }
      
 
@@ -48,11 +47,11 @@ public class Perso{
 	public void draw (long t, Graphics g){
 		if(numJoueur == 1){
 			g.setColor(Color.red);
-			g.fillArc(x, y, 100, 100, 0, 180);
+			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
 		if(numJoueur == 2){
 			g.setColor(Color.red);
-			g.fillArc(x, y, 100, 100, 0, 180);
+			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
 		
     }
@@ -63,19 +62,19 @@ public class Perso{
         y=y+(int)(vitesse*dy);
         
         //Collisions avec le bord de l'ecran
-        if (x<frame.x){
-        	x= frame.x;
+        if (x<frame.x+1){
+        	x= frame.x+2;
         }
         else{
-        	if (x+l>frame.x+frame.width){
-        		x=frame.x+frame.width-l;
+        	if (x>frame.x+frame.width-(2*rayon+2)){
+        		x=frame.x+frame.width-(2*rayon+3);
         	}
         }
         
         //Collision filet joueur 1
         if(numJoueur == 1){
-        	if(x>390){
-        		x=390;
+        	if(x>490-(2*rayon)){
+        		x=490-(2*rayon);
         	}
         }
         
@@ -97,12 +96,11 @@ public class Perso{
         else{ vx = -11.2; vy = 0; EnLAir = false;}
        
         y = y - (int)vy;
-        if(y>frame.height-50){
-        	y = frame.height-50;
+        if(y>frame.height-rayon){
+        	y = frame.height-rayon;
         }
         
         
-        limites.setLocation((int)x,(int)y);
         
         
     }
