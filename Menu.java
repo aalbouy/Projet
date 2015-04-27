@@ -1,9 +1,13 @@
 
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Menu extends JFrame {
     
@@ -82,6 +86,7 @@ public class Menu extends JFrame {
                if (e.getSource()==one_player){
                // lance le jeu avec 1 joueur (idée : pas de filet et permet
 	       // seulement de faire des jongles avec la balle
+                   JFrame jeu1=new Jeu();
                }
                else if (e.getSource()==two_player) {
                // lance le jeu avec 2 joueurs

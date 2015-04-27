@@ -21,9 +21,9 @@ public class Jeu extends JFrame {
     boolean ToucheGaucheJ1, ToucheGaucheJ2;
     boolean ToucheDroiteJ1, ToucheDroiteJ2;
     boolean ToucheHautJ1, ToucheHautJ2;
+    boolean Exit;
     Rectangle Ecran;
     Perso j1, j2;
-    Balle balle;
     int scoreP1;
     int scoreP2;
     Boolean finjeu;
@@ -53,8 +53,6 @@ public class Jeu extends JFrame {
         timer = new Timer(20, new TimerAction());
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
-        
-        balle = new Balle(3, 26, 0, 0);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -81,10 +79,7 @@ public class Jeu extends JFrame {
         
 		// Joueurs
 		j1.draw(temps, buffer);
-        j2.draw(temps, buffer);
-        
-        // Balle
-        balle.draw(temps,  buffer);
+                j2.draw(temps, buffer);
         
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
@@ -135,12 +130,10 @@ public class Jeu extends JFrame {
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
-        
-        // déplace la balle
-        //balle.move();
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
+        
         
         	
         }
@@ -181,6 +174,12 @@ public class Jeu extends JFrame {
         if(code == KeyEvent.VK_ENTER){
             if (timer.isRunning()) timer.stop();
             else timer.start();
+        }
+        
+        if(code == KeyEvent.VK_ESCAPE){
+            setVisible (false); 
+            dispose (); 
+            JFrame menu =new Menu();
         }
     }
         
