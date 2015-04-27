@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Perso{
     
     //Attributs
-    public double x, y;
+    public int x, y;
     public int h, l;
     public float dx, dy;
     public float vitesse;
@@ -41,27 +41,20 @@ public class Perso{
         EnLAir = false;
         vy = 0;
         vx = -11.2;
-        
-        try {
-        	image= ImageIO.read(new File(NomImage));
-        }
-        catch(Exception err) {
-        	System.out.println(NomImage+" introuvable !");
-        	System.out.println("Mettre les images dans le repertoire :" + getClass().getClassLoader().getResource(NomImage));
-        	System.exit(0);
-        }
-        // recupere une fois pour toute la hauteur et largeur de l'image
-        h= image.getHeight(null);
-        l= image.getWidth(null);
-        // definir les limites de l'objet pour les collisions et les sorties
-        limites = new Rectangle(ax,ay,l,h);
     }
      
 
 
 	public void draw (long t, Graphics g){
-		g.setColor(Color.red);
-		g.fillArc(180, 550, 100, 100, 0, 180);
+		if(numJoueur == 1){
+			g.setColor(Color.red);
+			g.fillArc(x, y, 100, 100, 0, 180);
+		}
+		if(numJoueur == 2){
+			g.setColor(Color.red);
+			g.fillArc(x, y, 100, 100, 0, 180);
+		}
+		
     }
 
 
@@ -103,7 +96,7 @@ public class Perso{
         }
         else{ vx = -11.2; vy = 0; EnLAir = false;}
        
-        y = y - vy;
+        y = y - (int)vy;
         if(y>frame.height-50){
         	y = frame.height-50;
         }
