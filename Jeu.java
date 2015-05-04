@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -52,10 +53,11 @@ public class Jeu extends JFrame {
         buffer = ArrierePlan.getGraphics();
         
         timer = new Timer(20, new TimerAction());
+        
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(3, 26, 0, 0);
+        balle = new Balle(3, Ecran.height, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -86,6 +88,11 @@ public class Jeu extends JFrame {
         
         // Balle
         balle.draw(temps,  buffer);
+        
+        //Score
+        buffer.setColor(Color.white);
+        buffer.drawString("SCORE J1 : " + scoreP1,10,Ecran.height-550);
+        buffer.drawString("SCORE J2 : " + scoreP2, Ecran.width-100,Ecran.height-550);
         
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
@@ -133,12 +140,16 @@ public class Jeu extends JFrame {
         if (ToucheHautJ2) { j2.Jump = true; }
         else { j2.Jump = false; }
         
+        //Collision
+        collisionJ1(j1, balle);
+        collisionJ2(j2, balle);
+        
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
         
         // déplace la balle
-        //balle.move();
+        balle.move(temps);
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
@@ -146,6 +157,23 @@ public class Jeu extends JFrame {
         	
         }
         
+    	public void collisionJ1(Perso j1, Balle balle){
+    		long d =(j1.x+j1.rayon - balle.x+balle.rayon)*(j1.x+j1.rayon - balle.x+balle.rayon) + (j1.y-j1.rayon - balle.y-balle.rayon)*(j2.y-j1.rayon - balle.y-j1.rayon);
+    		if(d < ((balle.rayon + j1.rayon)*(balle.rayon + j1.rayon)-300)){
+    			balle.vx = -34;
+    			balle.vy = 0;
+    			System.out.println("lol");
+    		}
+    	}
+    	
+    	public void collisionJ2 (Perso j2, Balle balle){
+    		long d =(j2.x+j2.rayon - balle.x+balle.rayon)*(j2.x+j2.rayon - balle.x+balle.rayon) + (j2.y-j2.rayon - balle.y-balle.rayon)*(j2.y-j2.rayon - balle.y-j2.rayon);
+    		if(d < ((balle.rayon+j2.rayon)*(balle.rayon+j2.rayon)-300)){
+    			balle.vx = -34;
+    			balle.vy = 0;
+    			System.out.println("lol2");
+    		}
+    	}
         
         
         

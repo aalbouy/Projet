@@ -7,18 +7,19 @@ import java.awt.Rectangle;
 public class Balle {
 
 	public int x, y, rayon;
-    public double vx, vy;
+    public double vx, vy, theta;
     public boolean rebond;
     
     /* public Rectangle limites;
-    public Rectangle limitesframe;
-    public Rectangle frame; */
+    public Rectangle limitesframe; */
+    public Rectangle frame; 
     
-    public Balle(int ax, int ay, float avx, float avy){
+    public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
     	x = ax;
     	y = ay;
-    	vx = avx;
+    	vx = -34;
     	vy = avy;
+    	frame = aframe;
     	rebond = false;
     	rayon = 20;
     }
@@ -28,11 +29,15 @@ public class Balle {
     	g.fillOval(x,y,rayon, rayon);
     }
     
-    public void move(){
-    	if(rebond = true){
-    		vx++;
-    		vy = -1.8*vx;
+    public void move(long t){
+    	if(y>frame.height){
+    		vx=-34;
+    		vy=0;
+    		y=frame.height;
     	}
-    	vy = y + vy;
+    	
+    	vx++;
+		vy = -0.5*vx;
+    	y = y - (int)vy;
     }
 }
