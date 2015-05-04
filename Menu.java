@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class Menu extends JFrame {
     
     // attributs
-    private JButton one_player;
+  
     private JButton two_player;
     private JButton three_player;
     private JButton four_player;
@@ -41,7 +41,7 @@ public class Menu extends JFrame {
         this.setTitle( "Volley3000" ); 
         
         
-        this.one_player = new JButton("1 joueur");
+    
         this.two_player = new JButton("2 joueurs");
         this.three_player = new JButton("3 joueurs");
         this.four_player = new JButton("4 joueurs");
@@ -51,7 +51,6 @@ public class Menu extends JFrame {
         
         JPanel jPanel1234 = new JPanel();
         jPanel1234.setLayout(new GridLayout());
-        jPanel1234.add(this.one_player);
         jPanel1234.add(this.two_player);
         jPanel1234.add(this.three_player);
         jPanel1234.add(this.four_player);
@@ -65,7 +64,6 @@ public class Menu extends JFrame {
         
      // gestion des événements: "addActionListener"
         GestionBouton gb = new GestionBouton();
-        one_player.addActionListener(gb);
         two_player.addActionListener(gb);
         three_player.addActionListener(gb);
         four_player.addActionListener(gb);
@@ -83,13 +81,10 @@ public class Menu extends JFrame {
            public void actionPerformed(ActionEvent e) { 
                // test des valeur de e.getSource()
                
-               if (e.getSource()==one_player){
-               // lance le jeu avec 1 joueur (idée : pas de filet et permet
-	       // seulement de faire des jongles avec la balle
-                   JFrame jeu1=new Jeu();
-               }
-               else if (e.getSource()==two_player) {
+              
+               if (e.getSource()==two_player) {
                // lance le jeu avec 2 joueurs
+               JFrame jeu1=new Jeu();
                }
                else if (e.getSource()==three_player) {
                // lance le jeu avec 3 joueurs (2 vs 1 ?)
