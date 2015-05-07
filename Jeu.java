@@ -89,11 +89,23 @@ public class Jeu extends JFrame {
         // Balle
         balle.draw(temps,  buffer);
         
-        //Score
+        //Score et fin du jeu
         buffer.setColor(Color.white);
         buffer.drawString("SCORE J1 : " + scoreP1,10,Ecran.height-550);
         buffer.drawString("SCORE J2 : " + scoreP2, Ecran.width-100,Ecran.height-550);
         
+	if(scoreP1==10){
+        timer.stop();
+        buffer.drawString("JOUEUR 1 WIN " + scoreP1 + " A " + scoreP2,Ecran.width/2-60,Ecran.height/2);
+        finjeu = true;}
+        
+        if(scoreP2==10){
+        timer.stop();
+        buffer.drawString("JOUEUR 2 WIN " + scoreP2 + " A " + scoreP1,Ecran.width/2-60,Ecran.height/2);
+        finjeu = true;}
+
+
+
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
         
@@ -154,10 +166,11 @@ public class Jeu extends JFrame {
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
 
+	// implementation du score
         if(balle.y==balle.frame.height && balle.x<500){
-            scoreP1++;}
-        if(balle.y==balle.frame.height && balle.x>500){
             scoreP2++;}
+        if(balle.y==balle.frame.height && balle.x>500){
+            scoreP1++;}
         
         	
         }
@@ -212,7 +225,7 @@ public class Jeu extends JFrame {
         	ToucheHautJ1 = true;
         }
         
-        if(code == KeyEvent.VK_ENTER){
+        if(code == KeyEvent.VK_ENTER && finjeu == false){
             if (timer.isRunning()) timer.stop();
             else timer.start();
         }
