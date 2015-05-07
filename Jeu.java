@@ -153,6 +153,11 @@ public class Jeu extends JFrame {
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
+
+        if(balle.y==balle.frame.height && balle.x<500){
+            scoreP1++;}
+        if(balle.y==balle.frame.height && balle.x>500){
+            scoreP2++;}
         
         	
         }
