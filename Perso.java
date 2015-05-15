@@ -59,8 +59,29 @@ public class Perso{
 
 
 	public void draw (long t, Graphics g){
+<<<<<<< HEAD
         g.drawImage(image,(int)x,(int)y,null);
+=======
+		if(numJoueur == 1){
+			g.setColor(Color.red);
+			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+		}
+		if(numJoueur == 2){
+			g.setColor(Color.red);
+			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+		}
+		g.setColor(Color.white);
+		g.fillOval(this.getXCentre()-1,this.getYCentre()-1, 2, 2);
+>>>>>>> origin/master
     }
+	
+	public int getXCentre(){
+		return x + rayon;
+	}
+	
+	public int getYCentre(){
+		return y + rayon;
+	}
 
 
     public void move(long t){

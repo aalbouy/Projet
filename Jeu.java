@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -52,10 +53,11 @@ public class Jeu extends JFrame {
         buffer = ArrierePlan.getGraphics();
         
         timer = new Timer(20, new TimerAction());
+        
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(3, 26, 0, 0);
+        balle = new Balle(225, Ecran.height, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -86,6 +88,22 @@ public class Jeu extends JFrame {
         
         // Balle
         balle.draw(temps,  buffer);
+        
+        //Score
+        buffer.setColor(Color.white);
+        buffer.drawString("SCORE J1 : " + scoreP1,10,Ecran.height-550);
+        buffer.drawString("SCORE J2 : " + scoreP2, Ecran.width-100,Ecran.height-550);
+        
+         //Fin jeu
+        if(scoreP1==10){
+            timer.stop();
+            buffer.drawString("JOUEUR 1 WIN " + scoreP1 + " A " + scoreP2,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;}
+            
+            if(scoreP2==10){
+            timer.stop();
+            buffer.drawString("JOUEUR 2 WIN " + scoreP2 + " A " + scoreP1,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;}
         
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
@@ -133,19 +151,36 @@ public class Jeu extends JFrame {
         if (ToucheHautJ2) { j2.Jump = true; }
         else { j2.Jump = false; }
         
+        //Collision
+        collisionJoueur(j1, balle);
+        collisionJoueur(j2, balle);
+        
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
         
         // déplace la balle
-        //balle.move();
+        balle.move(temps);
+        
+        if(balle.y==balle.frame.height && balle.x<500){
+            scoreP1++;}
+        if(balle.y==balle.frame.height && balle.x>500){
+            scoreP2++;}
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
-        
-        	
         }
         
+    	
+    	
+    	public void collisionJoueur (Perso j, Balle ball){
+    		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
+    		if((d <= (ball.rayon+j.rayon)*(ball.rayon+j.rayon)) && (ball.y<j.y)){
+    			ball.vx = -34;
+    			ball.vy = 0;
+    			System.out.println("lol");
+    		}
+    	}
         
         
         
@@ -179,14 +214,14 @@ public class Jeu extends JFrame {
         	ToucheHautJ1 = true;
         }
         
-        if(code == KeyEvent.VK_ENTER){
+        if(code == KeyEvent.VK_ENTER && finjeu == false){
             if (timer.isRunning()) timer.stop();
             else timer.start();
         }
         
         if(code == KeyEvent.VK_ESCAPE){
             setVisible (false); 
-            dispose (); 
+            dispose(); 
             JFrame menu =new Menu();
         }
     }
@@ -226,8 +261,8 @@ public class Jeu extends JFrame {
         }
 
         private void setTitle(String string) {
-        }
-        
+        	
+        }        
     }
     
     
