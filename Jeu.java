@@ -89,23 +89,22 @@ public class Jeu extends JFrame {
         // Balle
         balle.draw(temps,  buffer);
         
-        //Score et fin du jeu
+        //Score
         buffer.setColor(Color.white);
         buffer.drawString("SCORE J1 : " + scoreP1,10,Ecran.height-550);
         buffer.drawString("SCORE J2 : " + scoreP2, Ecran.width-100,Ecran.height-550);
         
-	if(scoreP1==10){
-        timer.stop();
-        buffer.drawString("JOUEUR 1 WIN " + scoreP1 + " A " + scoreP2,Ecran.width/2-60,Ecran.height/2);
-        finjeu = true;}
+         //Fin jeu
+        if(scoreP1==10){
+            timer.stop();
+            buffer.drawString("JOUEUR 1 WIN " + scoreP1 + " A " + scoreP2,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;}
+            
+            if(scoreP2==10){
+            timer.stop();
+            buffer.drawString("JOUEUR 2 WIN " + scoreP2 + " A " + scoreP1,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;}
         
-        if(scoreP2==10){
-        timer.stop();
-        buffer.drawString("JOUEUR 2 WIN " + scoreP2 + " A " + scoreP1,Ecran.width/2-60,Ecran.height/2);
-        finjeu = true;}
-
-
-
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
         
@@ -153,8 +152,8 @@ public class Jeu extends JFrame {
         else { j2.Jump = false; }
         
         //Collision
-        collisionJ1(j1, balle);
-        collisionJ2(j2, balle);
+        collisionJoueur(j1, balle);
+        collisionJoueur(j2, balle);
         
         // déplace le volemon sans le dessiner
         j1.move(temps);
@@ -162,35 +161,27 @@ public class Jeu extends JFrame {
         
         // déplace la balle
         balle.move(temps);
+        
+        if(balle.y==balle.frame.height && balle.x<500){
+            scoreP1++;}
+        if(balle.y==balle.frame.height && balle.x>500){
+            scoreP2++;}
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
-
-	// implementation du score
-        if(balle.y==balle.frame.height && balle.x<500){
-            scoreP2++;}
-        if(balle.y==balle.frame.height && balle.x>500){
-            scoreP1++;}
-        
-        	
         }
         
-    	public void collisionJ1(Perso j1, Balle balle){
-    		long d =(j1.x+j1.rayon - balle.x+balle.rayon)*(j1.x+j1.rayon - balle.x+balle.rayon) + (j1.y-j1.rayon - balle.y-balle.rayon)*(j2.y-j1.rayon - balle.y-j1.rayon);
-    		if(d < ((balle.rayon + j1.rayon)*(balle.rayon + j1.rayon)-300)){
-    			balle.vx = -34;
-    			balle.vy = 0;
-    			System.out.println("lol");
-    		}
-    	}
     	
-    	public void collisionJ2 (Perso j2, Balle balle){
-    		long d =(j2.x+j2.rayon - balle.x+balle.rayon)*(j2.x+j2.rayon - balle.x+balle.rayon) + (j2.y-j2.rayon - balle.y-balle.rayon)*(j2.y-j2.rayon - balle.y-j2.rayon);
-    		if(d < ((balle.rayon+j2.rayon)*(balle.rayon+j2.rayon)-300)){
-    			balle.vx = -34;
-    			balle.vy = 0;
-    			System.out.println("lol2");
-    		}
+    	
+    	public void collisionJoueur (Perso j, Balle ball){
+    		double d = Math.sqrt(Math.pow(ball.getXCentre()-j.getXCentre(), 2) -  Math.pow(ball.getYCentre()-j.getYCentre(), 2));
+    		/*if((d <= (ball.rayon+j.rayon)) && (ball.y<j.y)){
+    			System.out.println("d: " + d);
+    			System.out.println("distance rayon : " + (ball.rayon+j.rayon)*(ball.rayon+j.rayon));
+    			ball.vx = -34;
+    			ball.vy = 0;
+    			System.out.println("lol");
+    		}*/
     	}
         
         
@@ -232,7 +223,7 @@ public class Jeu extends JFrame {
         
         if(code == KeyEvent.VK_ESCAPE){
             setVisible (false); 
-            dispose (); 
+            dispose(); 
             JFrame menu =new Menu();
         }
     }
@@ -272,8 +263,8 @@ public class Jeu extends JFrame {
         }
 
         private void setTitle(String string) {
-        }
-        
+        	
+        }        
     }
     
     

@@ -9,10 +9,10 @@ public class Balle {
 	public int x, y, rayon;
     public double vx, vy, theta;
     public boolean rebond;
-    
-    /* public Rectangle limites;
-    public Rectangle limitesframe; */
     public Rectangle frame; 
+    public Color z;
+    public Color[] tab = new Color[7];
+    
     
     public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
     	x = ax;
@@ -21,13 +21,31 @@ public class Balle {
     	vy = avy;
     	frame = aframe;
     	rebond = false;
-    	rayon = 20;
+    	rayon = 10;
+    	tab[1] = Color.red;
+        tab[2] = Color.yellow;
+        tab[3] = Color.blue;
+        tab[0] = Color.white;
+        tab[5] = Color.pink;
+        tab[6] = Color.green;
+        tab[4] = Color.orange;
+        z = tab[(int) (Math.random()*7)];
     }
     
     public void draw (long t, Graphics g){
-    	g.setColor(Color.yellow);
-    	g.fillOval(x,y,rayon, rayon);
+    	g.setColor(z);
+    	g.fillOval(x,y,rayon*2, rayon*2);
+    	g.setColor(Color.green);
+    	g.fillOval(this.getXCentre()-1, this.getYCentre()-1, 2, 2);
     }
+    
+    public int getXCentre(){
+		return x + rayon;
+	}
+	
+	public int getYCentre(){
+		return y + rayon;
+	}
     
     public void move(long t){
     	if(y>frame.height){

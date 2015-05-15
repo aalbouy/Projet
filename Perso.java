@@ -53,8 +53,17 @@ public class Perso{
 			g.setColor(Color.red);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
-		
+		g.setColor(Color.white);
+		g.fillOval(this.getXCentre()-1,this.getYCentre()-1, 2, 2);
     }
+	
+	public int getXCentre(){
+		return x + rayon;
+	}
+	
+	public int getYCentre(){
+		return y + rayon;
+	}
 
 
     public void move(long t){
