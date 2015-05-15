@@ -22,14 +22,14 @@ public class Balle {
     	frame = aframe;
     	rebond = false;
     	rayon = 10;
-    	tab[1] = Color.red;
+    	//tab[6] = Color.red;
         tab[2] = Color.yellow;
         tab[3] = Color.blue;
         tab[0] = Color.white;
         tab[5] = Color.pink;
-        tab[6] = Color.green;
+        tab[1] = Color.green;
         tab[4] = Color.orange;
-        z = tab[(int) (Math.random()*7)];
+        z = tab[(int) (Math.random()*6)];
     }
     
     public void draw (long t, Graphics g){

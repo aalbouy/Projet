@@ -57,7 +57,7 @@ public class Jeu extends JFrame {
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(3, Ecran.height, 0, 0, Ecran);
+        balle = new Balle(225, Ecran.height, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -174,14 +174,12 @@ public class Jeu extends JFrame {
     	
     	
     	public void collisionJoueur (Perso j, Balle ball){
-    		double d = Math.sqrt(Math.pow(ball.getXCentre()-j.getXCentre(), 2) -  Math.pow(ball.getYCentre()-j.getYCentre(), 2));
-    		/*if((d <= (ball.rayon+j.rayon)) && (ball.y<j.y)){
-    			System.out.println("d: " + d);
-    			System.out.println("distance rayon : " + (ball.rayon+j.rayon)*(ball.rayon+j.rayon));
+    		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
+    		if((d <= (ball.rayon+j.rayon)*(ball.rayon+j.rayon)) && (ball.y<j.y)){
     			ball.vx = -34;
     			ball.vy = 0;
     			System.out.println("lol");
-    		}*/
+    		}
     	}
         
         
