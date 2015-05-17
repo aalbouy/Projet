@@ -1,19 +1,11 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
 
 public class Balle {
 
-<<<<<<< HEAD
-	public int x, y;
-    public float vx, vy;
-    public float vitesse;
-    /* public Rectangle limites;
-    public Rectangle limitesframe;
-    public Rectangle frame; */
-    
-    public Balle(int ax, int ay, int avx, int avy){
-=======
 	public int x, y, rayon;
     public double vx, vy, theta;
     public boolean rebond;
@@ -23,14 +15,10 @@ public class Balle {
     
     
     public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
->>>>>>> origin/master
     	x = ax;
     	y = ay;
     	vx = -34;
     	vy = avy;
-<<<<<<< HEAD
-    	
-=======
     	frame = aframe;
     	rebond = false;
     	rayon = 10;
@@ -69,6 +57,5 @@ public class Balle {
     	vx++;
 		vy = -0.5*vx;
     	y = y - (int)vy;
->>>>>>> origin/master
     }
 }
