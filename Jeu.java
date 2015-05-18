@@ -28,7 +28,7 @@ public class Jeu extends JFrame {
     Balle balle;
     int scoreP1;
     int scoreP2;
-    Boolean finjeu;
+    boolean finjeu, colJ1, colJ2;
     
     
     
@@ -57,7 +57,7 @@ public class Jeu extends JFrame {
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(225, Ecran.height, 0, 0, Ecran);
+        balle = new Balle(725, Ecran.height-80, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -77,10 +77,11 @@ public class Jeu extends JFrame {
         // remplir le buffer de noir
         buffer.setColor(Color.black);
         buffer.fillRect(Ecran.x,Ecran.y,Ecran.x+Ecran.width, Ecran.y+Ecran.height);
-        // dessine TOUS les objets dans le buffer
-		// Filet
+		
+        
+        // Filet
         buffer.setColor(Color.green);
-		buffer.fillRect(490,Ecran.height-100,20,100);
+		buffer.fillRect(Ecran.width/2 - 10,Ecran.height-100,20,100);
         
 		// Joueurs
 		j1.draw(temps, buffer);
@@ -126,7 +127,10 @@ public class Jeu extends JFrame {
     
     
     public void boucle_principale_jeu(){
-        
+        //init
+    	colJ1 = false;
+    	colJ2 = false;   	
+    	
         // déplacement lateral du volemon
     	if (ToucheGaucheJ1) { j1.dx = -1; j1.dy= 0; }
         else 
@@ -152,8 +156,21 @@ public class Jeu extends JFrame {
         else { j2.Jump = false; }
         
         //Collision
-        collisionJoueur(j1, balle);
-        collisionJoueur(j2, balle);
+        colJ1 = collisionJoueur(j1, balle);
+        colJ2 = collisionJoueur(j2, balle);
+        
+        //rebond s'il y a
+        if(colJ1 == true){
+        	balle.dx = rebondX(angle(j1,balle), balle);
+        	balle.dy = rebondY(angle(j1, balle), balle);
+        }
+        if(colJ2 == true){
+        	balle.dx = rebondX(angle(j2,balle), balle);
+        	balle.dy = rebondY(angle(j2, balle), balle);
+        }
+        
+        //collision mur
+        rebondMur(balle);
         
         // déplace le volemon sans le dessiner
         j1.move(temps);
@@ -173,19 +190,69 @@ public class Jeu extends JFrame {
         
     	
     	
-    	public void collisionJoueur (Perso j, Balle ball){
+    	public boolean collisionJoueur (Perso j, Balle ball){
+    		boolean collision = false;
     		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
     		if((d <= (ball.rayon+j.rayon)*(ball.rayon+j.rayon)) && (ball.y<j.y)){
     			ball.vx = -34;
     			ball.vy = 0;
+    			collision = true;
     			System.out.println("lol");
     		}
+    		return collision;
     	}
         
+    	public double[] contact(Perso j, Balle balle){
+            double ya = j.y;
+            double xa = j.x;
+            double yb = balle.y;
+            double xb = balle.x;
+            double [] coo = new double[2];
+            double teta = Math.acos((xb-xa)/((xb-xa)*(xb-xa)+(yb-ya)*(yb-ya)));
+            double xp = 50*Math.cos(teta);
+            double yp = 50*Math.sin(teta);
+            coo[0]=xp;
+            coo[1]=yp;
+            return coo;
+        }
+        
+        //public double[] tangente(double xp,double yp, Perso j){
+        
+        
+        public double angle (Perso j, Balle balle){
+            double dx = balle.vx;
+            double dy = balle.vy;
+            double x1 = (balle.getXCentre()-j.getXCentre());
+            double y1 = (balle.getYCentre()-j.getYCentre());
+            double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)));
+            
+            return teta;
+    }
+        
+        public double rebondX (double teta, Balle balle){
+            double vx= balle.vx;
+            double dx = -(Math.cos(2*teta)*vx);
+            
+            return dx;
+        }
+        
+            public double rebondY (double teta, Balle balle){
+                double vy= balle.vy;
+                double dy = -(Math.cos(2*teta)*vy);
+                
+                return dy;
+            }
+        
+           public void rebondMur (Balle balle){
+        	   if(balle.getXCentre() < balle.rayon || balle.getXCentre() > Ecran.width - balle.rayon){
+        		   balle.dx = -balle.dx;
+        	   }
+           }
         
         
     
-    
+
+
     public class GestionTouche implements KeyListener {
         public void keyPressed(KeyEvent e) {
             int code = e.getKeyCode();
@@ -220,9 +287,11 @@ public class Jeu extends JFrame {
         }
         
         if(code == KeyEvent.VK_ESCAPE){
-            setVisible (false); 
-            dispose(); 
-            JFrame menu =new Menu();
+        	setVisible (false); 
+            dispose();
+        	JFrame MonEcran = new MenuPrincipal();
+        	MonEcran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	MonEcran.setVisible(true);
         }
     }
         
@@ -264,7 +333,7 @@ public class Jeu extends JFrame {
         	
         }        
     }
-    
-    
-    
+
 }
+    
+    

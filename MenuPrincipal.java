@@ -83,7 +83,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         
         this.setContentPane(JPanel_fond);
         this.pack();
-        this.setSize(1080, 1020);
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
         
       //action listener
         jButtonQuitter.addActionListener(this);
@@ -111,10 +112,16 @@ public class MenuPrincipal extends JFrame implements ActionListener {
                }
                else if (e.getSource()==jButtonQuatreJoueurs) {
                // lance le jeu avec 4 joueurs
+            	   /*Thread playWave = AePlayWave("Chemin d'accès");
+            	   playWave.start();*/
                }
                else if (e.getSource()==jButtonOptions) {
                // ouvre un menu d'options : choix des touches, couleur de perso, fond d'ecran, volume de la musique (à réfléchir)
+            	   JFrame option = new Option();
+            	   setVisible(false);
+            	   dispose();
                }
+               
                }
             }
     public void actionPerformed(ActionEvent e){

@@ -8,6 +8,7 @@ public class Balle {
 
 	public int x, y, rayon;
     public double vx, vy, theta;
+    public double dx,dy;
     public boolean rebond;
     public Rectangle frame; 
     public Color z;
@@ -17,6 +18,8 @@ public class Balle {
     public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
     	x = ax;
     	y = ay;
+    	dx = 0;
+    	dy = 0;
     	vx = -34;
     	vy = avy;
     	frame = aframe;
@@ -56,6 +59,7 @@ public class Balle {
     	
     	vx++;
 		vy = -0.5*vx;
-    	y = y - (int)vy;
+    	y = y - (int)vy + (int)dy;
+    	x = x + (int)dx;
     }
 }
