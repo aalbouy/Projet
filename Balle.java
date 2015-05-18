@@ -3,6 +3,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import volemon.Option;
+
 
 public class Balle {
 
@@ -11,8 +13,8 @@ public class Balle {
     public double dx,dy;
     public boolean rebond;
     public Rectangle frame; 
-    public Color z;
-    public Color[] tab = new Color[7];
+    public Color z =Option.getCouleur();
+    
     
     
     public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
