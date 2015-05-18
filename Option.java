@@ -57,6 +57,8 @@ public class Option extends JFrame {
     private ButtonGroup groupe1;
     private ButtonGroup groupe2;
     private ButtonGroup groupe3;
+
+    public Color couleur;
    
     public Option() {
         
@@ -201,25 +203,25 @@ public class Option extends JFrame {
             
            
             if (e.getSource()==bRed) {
-          
+                couleur=Color.RED;
             }
             else if (e.getSource()==bYellow) {
-           
+                couleur=Color.YELLOW;
             }
             else if (e.getSource()==bBlue) {
-           
+                couleur=Color.BLUE;
             }
             else if (e.getSource()==bWhite) {
-           
+                couleur=Color.WHITE;
             }
                 else if (e.getSource()==bPink) {
-               
+                couleur=Color.PINK;
                 }
                 else if (e.getSource()==bGreen) {
-               
+                couleur=Color.GREEN;
                 }
                 else if (e.getSource()==bOrange) {
-                
+                    couleur=Color.ORANGE;
                 }
                 if (e.getSource()==j1Red) {
                 
@@ -265,7 +267,9 @@ public class Option extends JFrame {
                     }
             }
          }
- 
+    public Color getCouleur (){
+        return couleur;
+    }
     public static void main(String[] args) {
             new Option();
         }
