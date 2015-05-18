@@ -59,7 +59,7 @@ public class Balle {
     	
     	vx++;
 		vy = -0.5*vx;
-    	y = y - (int)vy + (int)dy;
-    	x = x + (int)dx;
+    	y = y - (int)vy + (int)dy/2;
+    	x = x + (int)dx/2;
     }
 }

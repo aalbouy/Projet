@@ -172,6 +172,9 @@ public class Jeu extends JFrame {
         //collision mur
         rebondMur(balle);
         
+        //collision filet
+        rebondFilet(balle);
+        
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
@@ -247,6 +250,15 @@ public class Jeu extends JFrame {
         	   if(balle.getXCentre() < balle.rayon || balle.getXCentre() > Ecran.width - balle.rayon){
         		   balle.dx = -balle.dx;
         	   }
+           }
+           
+           public void rebondFilet (Balle balle){
+               if (((balle.getXCentre()  + balle.rayon == 490 )&& (balle.getYCentre() + balle.rayon > 500))||((balle.getXCentre()  + balle.rayon == 510 ) && (balle.getYCentre() + balle.rayon > 500))){
+                   balle.vx=-balle.vx;
+           }
+               if ((balle.getXCentre()+balle.rayon >490)&&(balle.getYCentre()+balle.rayon==500)){
+                   balle.vy=-balle.vy;
+               }
            }
         
         
