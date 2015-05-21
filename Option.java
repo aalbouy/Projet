@@ -8,11 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
 
 public class Option extends JFrame {
     private JRadioButton bRed = new JRadioButton("Rouge");
@@ -49,7 +52,7 @@ public class Option extends JFrame {
     private GridLayout gridLayoutJ2;
     private JPanel J2;
     
-    private GridLayout gridLayoutPrincipal;
+    private BoxLayout boxLayoutPrincipal;
     private JLabel balle;
     private JLabel j1;
     private JLabel j2;
@@ -58,12 +61,13 @@ public class Option extends JFrame {
     private ButtonGroup groupe2;
     private ButtonGroup groupe3;
 
-    public Color couleur;
+    public static Color couleur;
+    private JButton jButtonRetour=new JButton("Menu");
    
     public Option() {
         
-        gridLayoutPrincipal = new GridLayout(3,1);
-        this.getContentPane().setLayout(gridLayoutPrincipal);
+        Box boxLayoutPrincipal = Box.createVerticalBox();
+        
         this.setLocationRelativeTo(null);
         this.setSize( new Dimension(1000, 600) );
         this.setTitle( "Options" ); 
@@ -71,11 +75,11 @@ public class Option extends JFrame {
         Box panneauRadio2 = Box.createHorizontalBox();
         Box panneauRadio3 = Box.createHorizontalBox();
         
-        JLabel balle=new JLabel("Balle");
+        JLabel balle=new JLabel("Balle                     ");
         balle.setForeground( Color.black);
-        JLabel j1=new JLabel("Joueur 1");
+        JLabel j1=   new JLabel("Joueur 1              ");
         balle.setForeground(Color.black);
-        JLabel j2=new JLabel("Joueur 2");
+        JLabel j2=new JLabel("Joueur 2              ");
         balle.setForeground(Color.black);
         
         JPanel Balle = new JPanel();
@@ -103,7 +107,7 @@ public class Option extends JFrame {
        
         Balle.add(panneauRadio1);
        
-        this.add(Balle);
+       boxLayoutPrincipal.add(Balle);
               
         
         
@@ -129,8 +133,7 @@ public class Option extends JFrame {
         panneauRadio2.add(j1Orange);
        
         J1.add(panneauRadio2);
-        
-        this.add(J1);
+        boxLayoutPrincipal.add(J1);
        
        
         
@@ -138,7 +141,6 @@ public class Option extends JFrame {
         JPanel J2 = new JPanel();
         J2.setLayout(new GridLayout());
         ButtonGroup groupe3 = new ButtonGroup();
-        
         
         groupe3.add(j2Red);
         groupe3.add(j2Yellow);
@@ -158,9 +160,14 @@ public class Option extends JFrame {
         
        
         J2.add(panneauRadio3);
-        this.add(J2);
+        boxLayoutPrincipal.add(J2);
         
        
+        JPanel menu = new JPanel();
+        menu.setLayout(new GridLayout());
+        menu.add(jButtonRetour);
+        boxLayoutPrincipal.add(jButtonRetour);
+        this.add(boxLayoutPrincipal);
         
         GestionBouton gb = new GestionBouton();
         bRed.addActionListener(gb);
@@ -187,6 +194,11 @@ public class Option extends JFrame {
         j2Green.addActionListener(gb);
         j2Orange.addActionListener(gb);
         
+        jButtonRetour.addActionListener(gb);
+        
+        
+       
+        
         
         
         
@@ -200,27 +212,35 @@ public class Option extends JFrame {
     public class GestionBouton implements ActionListener { 
         public void actionPerformed(ActionEvent e) { 
             // test des valeur de e.getSource()
-            
+            if (e.getSource()==jButtonRetour) {
+            // lance le jeu avec 2 joueurs
+            JFrame jeu1=new MenuPrincipal();
+                jeu1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                jeu1.setVisible(true);
+                
+                setVisible(false);
+                dispose();
+            }
            
-            if (e.getSource()==bRed) {
+            if (bRed.isSelected()) {
                 couleur=Color.RED;
             }
-            else if (e.getSource()==bYellow) {
+            else if (bYellow.isSelected()) {
                 couleur=Color.YELLOW;
             }
-            else if (e.getSource()==bBlue) {
+            else if (bBlue.isSelected()) {
                 couleur=Color.BLUE;
             }
-            else if (e.getSource()==bWhite) {
+            else if (bWhite.isSelected()) {
                 couleur=Color.WHITE;
             }
-                else if (e.getSource()==bPink) {
+                else if (bPink.isSelected()) {
                 couleur=Color.PINK;
                 }
-                else if (e.getSource()==bGreen) {
+                else if (bGreen.isSelected()) {
                 couleur=Color.GREEN;
                 }
-                else if (e.getSource()==bOrange) {
+                else if (bOrange.isSelected()) {
                     couleur=Color.ORANGE;
                 }
                 if (e.getSource()==j1Red) {
@@ -267,10 +287,11 @@ public class Option extends JFrame {
                     }
             }
          }
-    public Color getCouleur (){
+    public static Color getCouleur (){
         return couleur;
     }
     public static void main(String[] args) {
             new Option();
+            
         }
 }
