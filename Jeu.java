@@ -193,17 +193,17 @@ public class Jeu extends JFrame {
         
     	
     	
-    	public boolean collisionJoueur (Perso j, Balle ball){
-    		boolean collision = false;
-    		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
-    		if((d <= (ball.rayon+j.rayon)*(ball.rayon+j.rayon)) && (ball.y<j.y)){
-    			ball.vx = -34;
-    			ball.vy = 0;
-    			collision = true;
-    			System.out.println("lol");
-    		}
-    		return collision;
-    	}
+    public boolean collisionJoueur (Perso j, Balle ball){
+		boolean collision = false;
+		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
+		if((d <= (ball.rayon+j.rayon)*(ball.rayon+j.rayon)) && (ball.getYCentre()<j.getYCentre())){
+			ball.vx = -34;
+			ball.vy = 0;
+			collision = true;
+			System.out.println("lol");
+		}
+		return collision;
+	}
         
     	public double[] contact(Perso j, Balle balle){
             double ya = j.y;
