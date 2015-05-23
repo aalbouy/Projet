@@ -12,7 +12,7 @@ public class Balle {
     public double dx,dy;
     public boolean rebond;
     public Rectangle frame; 
-    public Color z =Option.getCouleur();
+    public Color z =Option.getCouleurB();
     
     
     

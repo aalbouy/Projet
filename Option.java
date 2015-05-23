@@ -61,7 +61,9 @@ public class Option extends JFrame {
     private ButtonGroup groupe2;
     private ButtonGroup groupe3;
 
-    public static Color couleur;
+    public static Color cb;
+    public static Color cj1;
+    public static Color cj2;
     private JButton jButtonRetour=new JButton("Menu");
    
     public Option() {
@@ -223,72 +225,80 @@ public class Option extends JFrame {
             }
            
             if (bRed.isSelected()) {
-                couleur=Color.RED;
+                cb=Color.RED;
             }
             else if (bYellow.isSelected()) {
-                couleur=Color.YELLOW;
+                cb=Color.YELLOW;
             }
             else if (bBlue.isSelected()) {
-                couleur=Color.BLUE;
+                cb=Color.BLUE;
             }
             else if (bWhite.isSelected()) {
-                couleur=Color.WHITE;
+                cb=Color.WHITE;
             }
                 else if (bPink.isSelected()) {
-                couleur=Color.PINK;
+                cb=Color.PINK;
                 }
                 else if (bGreen.isSelected()) {
-                couleur=Color.GREEN;
+                cb=Color.GREEN;
                 }
                 else if (bOrange.isSelected()) {
-                    couleur=Color.ORANGE;
+                    cb=Color.ORANGE;
                 }
                 if (e.getSource()==j1Red) {
+                    cj1=Color.RED;
+                }
+                else if (j1Yellow.isSelected()) {
+                    cj1=Color.YELLOW;
                 
                 }
-                else if (e.getSource()==j1Yellow) {
-                
-                }
-                else if (e.getSource()==j1Blue) {
-                
-                }
-                else if (e.getSource()==j1White) {
-                
-                }
-                    else if (e.getSource()==j1Pink) {
-                   
-                    }
-                    else if (e.getSource()==j1Green) {
-                   
-                    }
-                    else if (e.getSource()==j1Orange) {
+                else if (j1Blue.isSelected()) {
+                    cj1=Color.BLUE;
                     
-                    }
-                if (e.getSource()==j2Red) {
-                
                 }
-                else if (e.getSource()==j2Yellow) {
-                
+                else if (j1White.isSelected()) {
+                    cj1=Color.WHITE;
                 }
-                else if (e.getSource()==j2Blue) {
-                
+                else if (j1Pink.isSelected()) {
+                        cj1=Color.PINK;    
+                    }
+                else if (j1Green.isSelected()) {
+                        cj1=Color.GREEN;
+                    }
+                else if (j1Orange.isSelected()) {
+                        cj1=Color.ORANGE;
+                    }
+                if (j2Red.isSelected()) {
+                    cj2=Color.RED;
                 }
-                else if (e.getSource()==j2White) {
-                
+                else if (j2Yellow.isSelected()) {
+                    cj2=Color.YELLOW;
                 }
-                    else if (e.getSource()==j2Pink) {
-                   
-                    }
-                    else if (e.getSource()==j2Green) {
-                   
-                    }
-                    else if (e.getSource()==j2Orange) {
-                    
-                    }
+                else if (j2Blue.isSelected()) {
+                    cj2=Color.BLUE;
+                }
+                else if (j2White.isSelected()) {
+                    cj2=Color.WHITE;
+                }
+                else if (j2Pink.isSelected()) {
+                    cj2=Color.PINK;   
+                }
+                else if (j2Green.isSelected()) {
+                    cj2=Color.GREEN;   
+                }
+                else if (j2Orange.isSelected()) {
+                    cj2=Color.ORANGE;
+                }
             }
          }
-    public static Color getCouleur (){
-        return couleur;
+    public static Color getCouleurB (){
+        return cb;
+    }
+    public static Color getCouleurJ1 (){
+        return cj1;
+    }
+    public static Color getCouleurJ2 (){
+        return cj2;
     }
     public static void main(String[] args) {
             new Option();

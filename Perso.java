@@ -1,10 +1,8 @@
+package volemon;
+
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
-import java.io.File;
-
-import javax.imageio.ImageIO;
 
 public class Perso{
     
@@ -19,6 +17,8 @@ public class Perso{
     public String color;	//LOL
     public double vy, vx;
     public boolean Jump, EnLAir;
+    public Color j1=Option.getCouleurJ1();
+    public Color j2=Option.getCouleurJ2();
     
     
     
@@ -46,11 +46,11 @@ public class Perso{
 
 	public void draw (long t, Graphics g){
 		if(numJoueur == 1){
-			g.setColor(Color.red);
+			g.setColor(j1);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
 		if(numJoueur == 2){
-			g.setColor(Color.red);
+			g.setColor(j2);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
 		g.setColor(Color.white);
