@@ -1,5 +1,6 @@
+package volemon;
+
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -128,6 +129,7 @@ public class Jeu extends JFrame {
     
     public void boucle_principale_jeu(){
         //init
+        
     	colJ1 = false;
     	colJ2 = false;   	
     	
@@ -182,10 +184,15 @@ public class Jeu extends JFrame {
         // déplace la balle
         balle.move(temps);
         
-        if(balle.y==balle.frame.height && balle.x<500){
-            scoreP1++;}
         if(balle.y==balle.frame.height && balle.x>500){
-            scoreP2++;}
+            scoreP1++;
+            balle = new Balle(725, Ecran.height-80, 0, 0, Ecran);
+            
+        }
+        if(balle.y==balle.frame.height && balle.x<500){
+            scoreP2++;
+            balle = new Balle(200, Ecran.height-80, 0, 0, Ecran);
+        }
 
         // force le rafraichissement de l'image et le dessin de l'objet
         repaint();
