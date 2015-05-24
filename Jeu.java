@@ -177,6 +177,7 @@ public class Jeu extends JFrame {
         //collision filet
         rebondFilet(balle);
         
+        
         // déplace le volemon sans le dessiner
         j1.move(temps);
         j2.move(temps);
@@ -184,18 +185,20 @@ public class Jeu extends JFrame {
         // déplace la balle
         balle.move(temps);
         
-        if(balle.y==balle.frame.height && balle.x>500){
+        int y= balle.y;
+        if(y>=Ecran.height && balle.x>500){
             scoreP1++;
             balle = new Balle(725, Ecran.height-80, 0, 0, Ecran);
             j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
             j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
             
         }
-        if(balle.y==balle.frame.height && balle.x<500){
+        if(y>=Ecran.height && balle.x<500){
             scoreP2++;
             balle = new Balle(200, Ecran.height-80, 0, 0, Ecran);
             j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
             j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
+            
         }
 
         // force le rafraichissement de l'image et le dessin de l'objet
