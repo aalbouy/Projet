@@ -82,7 +82,9 @@ public class Jeu extends JFrame {
         
         // Filet
         buffer.setColor(Color.green);
-		buffer.fillRect(Ecran.width/2 - 10,Ecran.height-100,20,100);
+        buffer.fillRect(Ecran.width/2 - 10,Ecran.height-100,20,100);
+        
+        
         
 		// Joueurs
 		j1.draw(temps, buffer);
@@ -241,7 +243,7 @@ public class Jeu extends JFrame {
             double dy = balle.vy;
             double x1 = (balle.getXCentre()-j.getXCentre());
             double y1 = (balle.getYCentre()-j.getYCentre());
-            double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)));
+            double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)))+10;
             
             return teta;
     }
@@ -267,7 +269,7 @@ public class Jeu extends JFrame {
            }
            
            public void rebondFilet (Balle balle){
-               if (((balle.getXCentre()  + balle.rayon == 490 )&& (balle.getYCentre() + balle.rayon > 500))||((balle.getXCentre()  + balle.rayon == 510 ) && (balle.getYCentre() + balle.rayon > 500))){
+               if (((balle.getXCentre()  + balle.rayon == 490 )&& (balle.getYCentre() + balle.rayon > 500))||((balle.getXCentre()  - balle.rayon == 510 ) && (balle.getYCentre() + balle.rayon > 500))){
                    balle.vx=-balle.vx;
            }
                if ((balle.getXCentre()+balle.rayon >490)&&(balle.getYCentre()+balle.rayon==500)){
