@@ -29,7 +29,7 @@ public class Jeu extends JFrame {
     Balle balle;
     int scoreP1;
     int scoreP2;
-    boolean finjeu, colJ1, colJ2;
+    boolean finjeu, colJ1, colJ2, colFilet;
     
     
     
@@ -58,7 +58,7 @@ public class Jeu extends JFrame {
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(240, Ecran.height-80, 0, 0, Ecran);
+        balle = new Balle(240, Ecran.height-150, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -133,7 +133,8 @@ public class Jeu extends JFrame {
         //init
         
     	colJ1 = false;
-    	colJ2 = false;   	
+    	colJ2 = false;
+    	colFilet = false;
     	
         // déplacement lateral du volemon
     	if (ToucheGaucheJ1) { j1.dx = -1; j1.dy= 0; }
@@ -177,7 +178,12 @@ public class Jeu extends JFrame {
         rebondMur(balle);
         
         //collision filet
-        rebondFilet(balle);
+        colFilet = rebondFilet(balle);
+        if(colFilet){
+        	balle.vx = -34;
+        	//balle.y = Ecran.height-150;
+            balle.dy = - balle.dy;
+        }
         
         
         // déplace le volemon sans le dessiner
@@ -216,7 +222,7 @@ public class Jeu extends JFrame {
 			ball.vx = -34;
 			ball.vy = 0;
 			collision = true;
-			System.out.println("lol");
+			System.out.println("collision");
 		}
 		return collision;
 	}
@@ -241,7 +247,7 @@ public class Jeu extends JFrame {
         public double angle (Perso j, Balle balle){
             double dx = balle.vx;
             double dy = balle.vy;
-            double x1 = (balle.getXCentre()-j.getXCentre());
+            double x1 = (balle.getXCentre()+balle.rayon-j.getXCentre());
             double y1 = (balle.getYCentre()-j.getYCentre());
             double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)))+10;
             
@@ -268,12 +274,16 @@ public class Jeu extends JFrame {
         	   }
            }
            
-           public void rebondFilet (Balle balle){
-               if (((balle.getXCentre()  + balle.rayon == 490 )&& (balle.getYCentre() + balle.rayon > 500))||((balle.getXCentre()  - balle.rayon == 510 ) && (balle.getYCentre() + balle.rayon > 500))){
+           public boolean rebondFilet (Balle balle){
+               /*if (((balle.getXCentre()  + balle.rayon > 490 ) && (balle.getXCentre()  + balle.rayon < 495 ) && (balle.y < 500))||( (balle.getXCentre()  - balle.rayon > 505) && (balle.getXCentre()  - balle.rayon < 510 ) && (balle.y > 500))){
                    balle.vx=-balle.vx;
-           }
-               if ((balle.getXCentre()+balle.rayon >490)&&(balle.getYCentre()+balle.rayon==500)){
-                   balle.vy=-balle.vy;
+           }*/
+               if ((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509) && (balle.y+2*balle.rayon > Ecran.height-100)){
+            	   System.out.println("filet");
+            	   return true;
+               }
+               else{
+            	   return false;
                }
            }
         
@@ -315,6 +325,7 @@ public class Jeu extends JFrame {
         }
         
         if(code == KeyEvent.VK_ESCAPE){
+        	timer.stop();
         	setVisible (false); 
             dispose();
         	JFrame MonEcran = new MenuPrincipal();

@@ -38,7 +38,7 @@ public class Balle {
     }
     
     public int getXCentre(){
-		return x + rayon+10;
+		return x + rayon;
 	}
 	
 	public int getYCentre(){
@@ -46,13 +46,7 @@ public class Balle {
 	}
     
     public void move(long t){
-    	if(y>frame.height){
-    		vx=-34;
-    		vy=0;
-    		y=frame.height;
-    	}
-    	
-    	vx++;
+      	vx++;
 		vy = -0.5*vx;
     	y = y - (int)vy + (int)dy/2;
     	x = x + (int)dx/2;
