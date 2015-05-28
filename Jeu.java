@@ -29,7 +29,7 @@ public class Jeu extends JFrame {
     Balle balle;
     int scoreP1;
     int scoreP2;
-    boolean finjeu, colJ1, colJ2, colFilet;
+    boolean finjeu, colJ1, colJ2, colFilet1, colFilet2;
     
     
     
@@ -134,8 +134,8 @@ public class Jeu extends JFrame {
         
     	colJ1 = false;
     	colJ2 = false;
-    	colFilet = false;
-    	
+    	colFilet1 = false;
+    	colFilet2=false;
         // déplacement lateral du volemon
     	if (ToucheGaucheJ1) { j1.dx = -1; j1.dy= 0; }
         else 
@@ -178,12 +178,18 @@ public class Jeu extends JFrame {
         rebondMur(balle);
         
         //collision filet
-        colFilet = rebondFilet(balle);
-        if(colFilet){
+        colFilet1 = rebondFilet1(balle);
+        if(colFilet1){
         	balle.vx = -34;
         	//balle.y = Ecran.height-150;
             balle.dy = - balle.dy;
         }
+        colFilet2 = rebondFilet2(balle);
+        if(colFilet2){
+            balle.vy=-34;
+            balle.dx=-balle.dx;
+        }
+        
         
         
         // déplace le volemon sans le dessiner
@@ -274,11 +280,11 @@ public class Jeu extends JFrame {
         	   }
            }
            
-           public boolean rebondFilet (Balle balle){
+           public boolean rebondFilet1 (Balle balle){
                /*if (((balle.getXCentre()  + balle.rayon > 490 ) && (balle.getXCentre()  + balle.rayon < 495 ) && (balle.y < 500))||( (balle.getXCentre()  - balle.rayon > 505) && (balle.getXCentre()  - balle.rayon < 510 ) && (balle.y > 500))){
                    balle.vx=-balle.vx;
            }*/
-               if ((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509) && (balle.y+2*balle.rayon > Ecran.height-100)){
+               if ((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509) && ((Ecran.height-80 >balle.y+2*balle.rayon)&& (balle.y+2*balle.rayon > Ecran.height-100))){
             	   System.out.println("filet");
             	   return true;
                }
@@ -286,6 +292,16 @@ public class Jeu extends JFrame {
             	   return false;
                }
            }
+           
+           public boolean rebondFilet2 (Balle balle){
+               if((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509)&&(balle.y+2*balle.rayon >Ecran.height-80)){
+                   return true;
+               }
+               else{
+                   return false;
+               }
+               }
+           
         
         
     
