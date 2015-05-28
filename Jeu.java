@@ -1,4 +1,4 @@
-package volemon;
+
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -58,7 +58,7 @@ public class Jeu extends JFrame {
         j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
         j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
         
-        balle = new Balle(725, Ecran.height-80, 0, 0, Ecran);
+        balle = new Balle(240, Ecran.height-80, 0, 0, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -190,14 +190,14 @@ public class Jeu extends JFrame {
         int y= balle.y;
         if(y>=Ecran.height && balle.x>500){
             scoreP1++;
-            balle = new Balle(725, Ecran.height-80, 0, 0, Ecran);
+            balle = new Balle(740, Ecran.height-80, 0, 0, Ecran);
             j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
             j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
             
         }
         if(y>=Ecran.height && balle.x<500){
             scoreP2++;
-            balle = new Balle(200, Ecran.height-80, 0, 0, Ecran);
+            balle = new Balle(240, Ecran.height-80, 0, 0, Ecran);
             j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
             j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
             
@@ -221,11 +221,11 @@ public class Jeu extends JFrame {
 		return collision;
 	}
         
-    	public double[] contact(Perso j, Balle balle){
-            double ya = j.y;
-            double xa = j.x;
-            double yb = balle.y;
-            double xb = balle.x;
+    	/*public double[] contact(Perso j, Balle balle){
+            double ya = j.getYCentre();
+            double xa = j.getXCentre();
+            double yb = balle.getYCentre();
+            double xb = balle.getXCentre();
             double [] coo = new double[2];
             double teta = Math.acos((xb-xa)/((xb-xa)*(xb-xa)+(yb-ya)*(yb-ya)));
             double xp = 50*Math.cos(teta);
@@ -233,7 +233,7 @@ public class Jeu extends JFrame {
             coo[0]=xp;
             coo[1]=yp;
             return coo;
-        }
+        }*/
         
         //public double[] tangente(double xp,double yp, Perso j){
         

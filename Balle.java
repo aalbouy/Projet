@@ -1,4 +1,4 @@
-package volemon;
+
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -38,7 +38,7 @@ public class Balle {
     }
     
     public int getXCentre(){
-		return x + rayon;
+		return x + rayon+10;
 	}
 	
 	public int getYCentre(){
