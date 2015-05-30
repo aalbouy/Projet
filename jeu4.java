@@ -346,28 +346,28 @@ public class jeu4 extends JFrame {
         			   ToucheHautJ1 = true;
         		   }
                            
-                       if(code == KeyEvent.VK_G){
-                                ToucheHautJ3 = true;  
+        		   if(code == KeyEvent.VK_G){
+        			   ToucheHautJ3 = true;  
         	       }
         	       
         	       if(code == KeyEvent.VK_V){
-        	               ToucheGaucheJ3 = true;  
+        	           ToucheGaucheJ3 = true;  
         	       }
         	       
         	       if(code == KeyEvent.VK_N){
-        	               ToucheDroiteJ3 = true;  
+        	           ToucheDroiteJ3 = true;  
         	       }
         	       
-        	       if(code == KeyEvent.VK_1){
-        	               ToucheGaucheJ4 = true;
+        	       if(code == KeyEvent.VK_NUMPAD1){
+        	           ToucheGaucheJ4 = true;
         	       }
         	       
-        	       if(code == KeyEvent.VK_3){
-        	               ToucheDroiteJ4 = true;
+        	       if(code == KeyEvent.VK_NUMPAD3){
+        	           ToucheDroiteJ4 = true;
         	       }
         	       
-        	       if(code == KeyEvent.VK_5){
-        	               ToucheHautJ4 = true;
+        	       if(code == KeyEvent.VK_NUMPAD5){
+        	           ToucheHautJ4 = true;
         	       }
         
         		   if(code == KeyEvent.VK_ENTER && finjeu == false){
@@ -424,15 +424,15 @@ public class jeu4 extends JFrame {
         	               ToucheDroiteJ3 = false;  
         	       }
         	       
-        	       if(code == KeyEvent.VK_1){
+        	       if(code == KeyEvent.VK_NUMPAD1){
         	               ToucheGaucheJ4 = false;
         	       }
         	       
-        	       if(code == KeyEvent.VK_3){
+        	       if(code == KeyEvent.VK_NUMPAD3){
         	               ToucheDroiteJ4 = false;
         	       }
         	       
-        	       if(code == KeyEvent.VK_5){
+        	       if(code == KeyEvent.VK_NUMPAD5){
         	               ToucheHautJ4 = false;
         	       }
                            
