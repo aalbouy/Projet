@@ -108,7 +108,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
               
                if (e.getSource()==jButtonDeuxJoueurs) {
                // lance le jeu avec 2 joueurs
-               JFrame jeu1=new Jeu();
+            	   JFrame Jeu=new Jeu();
+            	   Jeu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                   Jeu.setVisible(true);
+            	   setVisible(false);
+            	   dispose();
                }
                else if (e.getSource()==jButtonQuatreJoueurs) {
                // lance le jeu avec 4 joueurs
@@ -117,7 +121,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
                }
                else if (e.getSource()==jButtonOptions) {
                // ouvre un menu d'options : choix des touches, couleur de perso, fond d'ecran, volume de la musique (à réfléchir)
-            	   JFrame option = new Option();
+            	   JFrame Option = new Option();
+            	   Option.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                   Option.setVisible(true);
             	   setVisible(false);
             	   dispose();
                }

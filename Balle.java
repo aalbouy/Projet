@@ -12,29 +12,25 @@ public class Balle {
     public double dx,dy;
     public boolean rebond;
     public Rectangle frame; 
-    public Color z =Option.getCouleurB();
+    public Color z = Option.getCouleurB();
     
     
     
-    public Balle(int ax, int ay, float avx, float avy, Rectangle aframe){
+    public Balle(int ax, int ay, Rectangle aframe){
     	x = ax;
     	y = ay;
     	dx = 0;
     	dy = 0;
     	vx = -34;
-    	vy = avy;
     	frame = aframe;
     	rebond = false;
-    	rayon = 10;
-    	//tab[6] = Color.red;
-       
+    	rayon = 10;       
     }
     
     public void draw (long t, Graphics g){
+		g.setColor(Color.white);
     	g.setColor(z);
     	g.fillOval(x,y,rayon*2, rayon*2);
-    	g.setColor(Color.green);
-    	g.fillOval(this.getXCentre()-1, this.getYCentre()-1, 2, 2);
     }
     
     public int getXCentre(){
@@ -47,8 +43,8 @@ public class Balle {
     
     public void move(long t){
       	vx++;
-		vy = -0.5*vx;
-    	y = y - (int)vy + (int)dy/2;
-    	x = x + (int)dx/2;
+		vy = 0.5*vx;
+    	y = y + (int)vy + (int)dy;
+    	x = x + (int)(dx/2);
     }
 }

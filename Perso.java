@@ -10,15 +10,13 @@ public class Perso{
     public int x, y, rayon;
     public float dx, dy;
     public float vitesse;
-    public Rectangle limites;
-    public Rectangle limitesframe;
     public Rectangle frame;
     public int numJoueur;
-    public String color;	//LOL
+    public String color;
     public double vy, vx;
     public boolean Jump, EnLAir;
-    public Color j1=Option.getCouleurJ1();
-    public Color j2=Option.getCouleurJ2();
+    public Color ColJ1=Option.getCouleurJ1();
+    public Color ColJ2=Option.getCouleurJ2();
     
     
     
@@ -26,15 +24,12 @@ public class Perso{
     //Méthodes
     
     // Constructeur
-    public Perso(int ax,int ay, float adx, float ady, float avitesse, String NomImage, Rectangle aframe, int joueur, String acolor){
+    public Perso(int ax, float avitesse, Rectangle aframe, int joueur){
         x = ax;
-        y = ay;
-        dx = adx;
-        dy = ady;
-        vitesse = avitesse ;
+        y = aframe.height-50;
+        vitesse = avitesse;
         frame = aframe;
         numJoueur = joueur;
-        color = acolor;
         Jump = false;
         EnLAir = false;
         vy = 0;
@@ -46,15 +41,15 @@ public class Perso{
 
 	public void draw (long t, Graphics g){
 		if(numJoueur == 1){
-			g.setColor(j1);
+			g.setColor(Color.blue);
+			g.setColor(ColJ1);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
 		if(numJoueur == 2){
-			g.setColor(j2);
+			g.setColor(Color.red);
+			g.setColor(ColJ2);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
-		g.setColor(Color.white);
-		g.fillOval(this.getXCentre()-1,this.getYCentre()-1, 2, 2);
     }
 	
 	public int getXCentre(){
@@ -67,55 +62,48 @@ public class Perso{
 
 
     public void move(long t){
+    	//Mouvement horizontal
         x=x+(int)(vitesse*dx);
         y=y+(int)(vitesse*dy);
         
         //Collisions avec le bord de l'ecran
         if (x<frame.x+1){
-        	x= frame.x+2;
+        	x = frame.x+1;
         }
-        else{
-        	if (x>frame.x+frame.width-(2*rayon+2)){
-        		x=frame.x+frame.width-(2*rayon+3);
-        	}
+        else if(x>frame.x+frame.width-(2*rayon+2)){
+        	x = frame.x+frame.width-(2*rayon+2);
         }
         
         //Collision filet joueur 1
-        if(numJoueur == 1){
-        	if(x>490-(2*rayon)){
-        		x=490-(2*rayon);
-        	}
+        if(numJoueur == 1 && x>490-(2*rayon)){
+        	x=490-(2*rayon);
         }
         
         //Collision filet joueur 2
-        if(numJoueur == 2){
-        	if(x<510){
-        		x=510;
-        	}
+        if(numJoueur == 2 && x<150){
+        	x=510;
         }
         
         //Tentative saut 
         if(Jump == true){
         	EnLAir = true;
         }
+        
+        //Mouvement du saut
         if (EnLAir == true && vx<11.2){
         	vx++;
         	vy = -1.8*vx;
         }
-        else{ vx = -11.2; vy = 0; EnLAir = false;}
-       
+        else{ 
+        	vx = -11.2; vy = 0; EnLAir = false;
+        }
+        
         y = y - (int)vy;
+        
         if(y>frame.height-rayon){
         	y = frame.height-rayon;
         }
-        
-        
-        
-        
     }
-    
-    
-    
     
 }
 

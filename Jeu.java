@@ -39,9 +39,7 @@ public class Jeu extends JFrame {
     
     
     //Constructeur
-    public Jeu() {
-        super();
-
+    public Jeu() {        
         setSize(1000,600);
         
         scoreP1 = 0;
@@ -53,12 +51,12 @@ public class Jeu extends JFrame {
         ArrierePlan = new BufferedImage(getSize().width,getSize().height,BufferedImage.TYPE_INT_RGB);
         buffer = ArrierePlan.getGraphics();
         
-        timer = new Timer(20, new TimerAction());
+        timer = new Timer(15, new TimerAction());
         
-        j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
-        j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
+        j1 = new Perso(200, (float)(8), Ecran, 1);
+        j2 = new Perso(700, (float)(8), Ecran, 2);
         
-        balle = new Balle(240, Ecran.height-150, 0, 0, Ecran);
+        balle = new Balle(240, Ecran.height-60, Ecran);
           
         timer.start();
         this.addKeyListener(new GestionTouche());
@@ -69,10 +67,6 @@ public class Jeu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    public class Jeu_this_keyAdapter extends KeyAdapter{
-        
-        
-        }
     
     public void paint( Graphics g ) {
         // remplir le buffer de noir
@@ -101,27 +95,28 @@ public class Jeu extends JFrame {
          //Fin jeu
         if(scoreP1==10){
             timer.stop();
-            buffer.drawString("JOUEUR 1 WIN " + scoreP1 + " A " + scoreP2,Ecran.width/2-60,Ecran.height/2);
-            finjeu = true;}
+            buffer.drawString("JOUEUR 1 GAGNE " + scoreP1 + " À " + scoreP2,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;
+        }
             
-            if(scoreP2==10){
+        if(scoreP2==10){
             timer.stop();
-            buffer.drawString("JOUEUR 2 WIN " + scoreP2 + " A " + scoreP1,Ecran.width/2-60,Ecran.height/2);
-            finjeu = true;}
+            buffer.drawString("JOUEUR 2 GAGNE " + scoreP2 + " À " + scoreP1,Ecran.width/2-60,Ecran.height/2);
+            finjeu = true;
+        }
         
         // dessine une seule fois le buffer dans le Panel
         g.drawImage(ArrierePlan,0,0,this);
         
-        buffer.setColor(Color.white);
-           
-        }
+        buffer.setColor(Color.white);          
+    }
         
 
     
     
     
     private class TimerAction implements ActionListener {
-            // ActionListener appelee toutes les 100 millisecondes
+            // ActionListener appelee toutes les 15 millisecondes
         public void actionPerformed(ActionEvent e) {
                 boucle_principale_jeu();
                 temps++;
@@ -181,13 +176,12 @@ public class Jeu extends JFrame {
         colFilet1 = rebondFilet1(balle);
         if(colFilet1){
         	balle.vx = -34;
-        	//balle.y = Ecran.height-150;
-            balle.dy = - balle.dy;
+            balle.dy = -balle.dy;
         }
         colFilet2 = rebondFilet2(balle);
         if(colFilet2){
-            balle.vy=-34;
-            balle.dx=-balle.dx;
+            balle.vy = -34;
+            balle.dx = -balle.dx;
         }
         
         
@@ -199,19 +193,20 @@ public class Jeu extends JFrame {
         // déplace la balle
         balle.move(temps);
         
+        //score
         int y= balle.y;
         if(y>=Ecran.height && balle.x>500){
             scoreP1++;
-            balle = new Balle(740, Ecran.height-80, 0, 0, Ecran);
-            j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
-            j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
+            balle = new Balle(740, Ecran.height-60, Ecran);
+            j1 = new Perso(200, (float)(8), Ecran, 1);
+            j2 = new Perso(700, (float)(8), Ecran, 2);
             
         }
         if(y>=Ecran.height && balle.x<500){
             scoreP2++;
-            balle = new Balle(240, Ecran.height-80, 0, 0, Ecran);
-            j1 = new Perso(200,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 1, "Color.GREEN");
-            j2 = new Perso(700,Ecran.height-50,(float)(0),(float)(0),(float)(10),"Volemon.png",Ecran, 2, "Color.RED");
+            balle = new Balle(240, Ecran.height-60, Ecran);
+            j1 = new Perso(200, (float)(8), Ecran, 1);
+            j2 = new Perso(700, (float)(8), Ecran, 2);
             
         }
 
@@ -228,49 +223,29 @@ public class Jeu extends JFrame {
 			ball.vx = -34;
 			ball.vy = 0;
 			collision = true;
-			System.out.println("collision");
+			//System.out.println("collision");
 		}
 		return collision;
 	}
-        
-    	/*public double[] contact(Perso j, Balle balle){
-            double ya = j.getYCentre();
-            double xa = j.getXCentre();
-            double yb = balle.getYCentre();
-            double xb = balle.getXCentre();
-            double [] coo = new double[2];
-            double teta = Math.acos((xb-xa)/((xb-xa)*(xb-xa)+(yb-ya)*(yb-ya)));
-            double xp = 50*Math.cos(teta);
-            double yp = 50*Math.sin(teta);
-            coo[0]=xp;
-            coo[1]=yp;
-            return coo;
-        }*/
-        
-        //public double[] tangente(double xp,double yp, Perso j){
-        
-        
+               
         public double angle (Perso j, Balle balle){
             double dx = balle.vx;
             double dy = balle.vy;
             double x1 = (balle.getXCentre()+balle.rayon-j.getXCentre());
             double y1 = (balle.getYCentre()-j.getYCentre());
             double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)))+10;
-            
             return teta;
     }
         
         public double rebondX (double teta, Balle balle){
             double vx= balle.vx;
             double dx = -(Math.cos(2*teta)*vx);
-            
             return dx;
         }
         
             public double rebondY (double teta, Balle balle){
                 double vy= balle.vy;
-                double dy = -(Math.cos(2*teta)*vy);
-                
+                double dy = -(Math.cos(2*teta)*vy);            
                 return dy;
             }
         
@@ -281,11 +256,9 @@ public class Jeu extends JFrame {
            }
            
            public boolean rebondFilet1 (Balle balle){
-               /*if (((balle.getXCentre()  + balle.rayon > 490 ) && (balle.getXCentre()  + balle.rayon < 495 ) && (balle.y < 500))||( (balle.getXCentre()  - balle.rayon > 505) && (balle.getXCentre()  - balle.rayon < 510 ) && (balle.y > 500))){
-                   balle.vx=-balle.vx;
-           }*/
+               
                if ((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509) && ((Ecran.height-80 >balle.y+2*balle.rayon)&& (balle.y+2*balle.rayon > Ecran.height-100))){
-            	   System.out.println("filet");
+            	   //System.out.println("filet");
             	   return true;
                }
                else{
@@ -300,95 +273,85 @@ public class Jeu extends JFrame {
                else{
                    return false;
                }
-               }
+           }
            
-        
-        
-    
-
-
-    public class GestionTouche implements KeyListener {
-        public void keyPressed(KeyEvent e) {
-            int code = e.getKeyCode();
+           public class GestionTouche implements KeyListener {
+        	   public void keyPressed(KeyEvent e) {
+        		   int code = e.getKeyCode();
             
-        if(code == KeyEvent.VK_UP){
-          ToucheHautJ2 = true;  
-        }
+        		   if(code == KeyEvent.VK_UP){
+        			   ToucheHautJ2 = true;  
+        		   }
         
-        if(code == KeyEvent.VK_LEFT){
-          ToucheGaucheJ2 = true;  
-        }
+        		   if(code == KeyEvent.VK_LEFT){
+        			   ToucheGaucheJ2 = true;  
+        		   }
         
-        if(code == KeyEvent.VK_RIGHT){
-          ToucheDroiteJ2 = true;  
-        }
+        		   if(code == KeyEvent.VK_RIGHT){
+        			   ToucheDroiteJ2 = true;  
+        		   }
         
-        if(code == KeyEvent.VK_Q){
-        	ToucheGaucheJ1 = true;
-        }
+        		   if(code == KeyEvent.VK_Q){
+        			   ToucheGaucheJ1 = true;
+        		   }
         
-        if(code == KeyEvent.VK_D){
-        	ToucheDroiteJ1 = true;
-        }
+        		   if(code == KeyEvent.VK_D){
+        			   ToucheDroiteJ1 = true;
+        		   }
         
-        if(code == KeyEvent.VK_Z){
-        	ToucheHautJ1 = true;
-        }
+        		   if(code == KeyEvent.VK_Z){
+        			   ToucheHautJ1 = true;
+        		   }
         
-        if(code == KeyEvent.VK_ENTER && finjeu == false){
-            if (timer.isRunning()) timer.stop();
-            else timer.start();
-        }
+        		   if(code == KeyEvent.VK_ENTER && finjeu == false){
+        			   if (timer.isRunning()) timer.stop();
+        			   else timer.start();
+        		   }
         
-        if(code == KeyEvent.VK_ESCAPE){
-        	timer.stop();
-        	setVisible (false); 
-            dispose();
-        	JFrame MonEcran = new MenuPrincipal();
-        	MonEcran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	MonEcran.setVisible(true);
-        }
-    }
+        		   if(code == KeyEvent.VK_ESCAPE){
+        			   timer.stop();
+        			   setVisible (false); 
+        			   dispose();
+        			   JFrame MonEcran = new MenuPrincipal();
+        			   MonEcran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        			   MonEcran.setVisible(true);
+        		   }
+        	   }
         
-        public void keyReleased(KeyEvent e) {
-            int code = e.getKeyCode();
+        	   public void keyReleased(KeyEvent e) {
+        		   int code = e.getKeyCode();
             
-        if(code == KeyEvent.VK_UP){
-          ToucheHautJ2 = false;  
-        }
+        		   if(code == KeyEvent.VK_UP){
+        			   ToucheHautJ2 = false;  
+        		   }
         
-        if(code == KeyEvent.VK_LEFT){
-          ToucheGaucheJ2 = false;  
-        }
+        		   if(code == KeyEvent.VK_LEFT){
+        			   ToucheGaucheJ2 = false;  
+        		   }
         
-        if(code == KeyEvent.VK_RIGHT){
-          ToucheDroiteJ2 = false;  
-        }
+        		   if(code == KeyEvent.VK_RIGHT){
+        			   ToucheDroiteJ2 = false;  
+        		   }
         
-        if(code == KeyEvent.VK_Q){
-        	ToucheGaucheJ1 = false;
-        }
+        		   if(code == KeyEvent.VK_Q){
+        			   ToucheGaucheJ1 = false;
+        		   }
         
-        if(code == KeyEvent.VK_D){
-        	ToucheDroiteJ1 = false;
-        }
+        		   if(code == KeyEvent.VK_D){
+        			   ToucheDroiteJ1 = false;
+        		   }
         
-        if(code == KeyEvent.VK_Z){
-        	ToucheHautJ1 = false;
-        }
+        		   if(code == KeyEvent.VK_Z){
+        			   ToucheHautJ1 = false;
+        		   }
         
-        }
-        
-        @Override
-        public void keyTyped(KeyEvent e) {
-            // TODO Implement this method
-        }
+        	   }
+        	   
+        	   public void keyTyped(KeyEvent e) {
+                   // TODO Implement this method
+               }
+           }
 
-        private void setTitle(String string) {
-        	
-        }        
-    }
-
-}
+	}
     
     

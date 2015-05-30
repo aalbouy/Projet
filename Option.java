@@ -71,7 +71,6 @@ public class Option extends JFrame {
         Box boxLayoutPrincipal = Box.createVerticalBox();
         
         this.setLocationRelativeTo(null);
-        this.setSize( new Dimension(1000, 600) );
         this.setTitle( "Options" ); 
         Box panneauRadio1 = Box.createHorizontalBox();
         Box panneauRadio2 = Box.createHorizontalBox();
@@ -196,16 +195,11 @@ public class Option extends JFrame {
         j2Green.addActionListener(gb);
         j2Orange.addActionListener(gb);
         
-        jButtonRetour.addActionListener(gb);
-        
-        
-       
-        
-        
-        
+        jButtonRetour.addActionListener(gb); 
         
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.setVisible(true);
                
       
@@ -215,11 +209,10 @@ public class Option extends JFrame {
         public void actionPerformed(ActionEvent e) { 
             // test des valeur de e.getSource()
             if (e.getSource()==jButtonRetour) {
-            // lance le jeu avec 2 joueurs
-            JFrame jeu1=new MenuPrincipal();
-                jeu1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                jeu1.setVisible(true);
-                
+            // lance le menu principal
+            	JFrame Menu=new MenuPrincipal();
+                Menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                Menu.setVisible(true);
                 setVisible(false);
                 dispose();
             }
