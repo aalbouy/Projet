@@ -116,8 +116,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
                }
                else if (e.getSource()==jButtonQuatreJoueurs) {
                // lance le jeu avec 4 joueurs
-            	   /*Thread playWave = AePlayWave("Chemin d'accès");
-            	   playWave.start();*/
+            	   JFrame jeu4=new jeu4();
+       		   jeu4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       		   jeu4.setVisible(true);
+       		   setVisible(false);
+       		   dispose();
                }
                else if (e.getSource()==jButtonOptions) {
                // ouvre un menu d'options : choix des touches, couleur de perso, fond d'ecran, volume de la musique (à réfléchir)
