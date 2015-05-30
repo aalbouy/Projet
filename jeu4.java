@@ -190,18 +190,26 @@ public class jeu4 extends JFrame {
         
         //rebond s'il y a
         if(colJ1 == true){
-        	balle.dx = rebondX(angle(j1,balle), balle);
+                Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/rebond.wav");
+                playWave.start();
+                balle.dx = rebondX(angle(j1,balle), balle);
         	balle.dy = rebondY(angle(j1, balle), balle);
         }
         if(colJ2 == true){
-        	balle.dx = rebondX(angle(j2,balle), balle);
+                Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/rebond.wav");
+                playWave.start();
+                balle.dx = rebondX(angle(j2,balle), balle);
         	balle.dy = rebondY(angle(j2, balle), balle);
         }
         if(colJ3 == true){
+                Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/rebond.wav");
+                playWave.start();
                 balle.dx = rebondX(angle(j3,balle), balle);
                 balle.dy = rebondY(angle(j3, balle), balle);
         }
         if(colJ4 == true){
+                Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/rebond.wav");
+                playWave.start();
                 balle.dx = rebondX(angle(j4,balle), balle);
                 balle.dy = rebondY(angle(j4, balle), balle);
         }
@@ -236,6 +244,8 @@ public class jeu4 extends JFrame {
         int y= balle.y;
         if(y>=Ecran.height && balle.x>500){
             scoreP1++;
+            Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/applause.wav");
+            playWave.start();
             balle = new Balle(740, Ecran.height-60, Ecran);
             j1 = new Perso(200, (float)(8), Ecran, 1);
             j2 = new Perso(700, (float)(8), Ecran, 2);
@@ -245,6 +255,8 @@ public class jeu4 extends JFrame {
         }
         if(y>=Ecran.height && balle.x<500){
             scoreP2++;
+            Thread playWave=new AePlayWave("C:\\Users\\Opheliaa\\Documents\\INSA\\2A\\Cours\\Informatique\\..PROJET\\banque_du_son/applause.wav");
+            playWave.start();
             balle = new Balle(240, Ecran.height-60, Ecran);
             j1 = new Perso(200, (float)(8), Ecran, 1);
             j2 = new Perso(700, (float)(8), Ecran, 2);
