@@ -17,8 +17,8 @@ public class Perso{
     public boolean Jump, EnLAir;
     public Color ColJ1=Option.getCouleurJ1();
     public Color ColJ2=Option.getCouleurJ2();
-    
-    
+    public Color ColJ3=Option.getCouleurJ3();
+    public Color ColJ4=Option.getCouleurJ4();
     
     
     //Méthodes
@@ -45,19 +45,24 @@ public class Perso{
 			g.setColor(ColJ1);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
+                
 		if(numJoueur == 2){
 			g.setColor(Color.red);
 			g.setColor(ColJ2);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
-        if(numJoueur == 3){
-                g.setColor(Color.white);
-                g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
-        }
-        if(numJoueur == 4){
-                g.setColor(Color.white);
-                g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
-        }
+                
+                if(numJoueur == 3){
+                        g.setColor(Color.orange);
+                        g.setColor(ColJ3);
+                        g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+                }
+                
+                if(numJoueur == 4){
+                        g.setColor(Color.pink);
+                        g.setColor(ColJ4);
+                        g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+                }
     }
 	
 	public int getXCentre(){
@@ -82,12 +87,12 @@ public class Perso{
         	x = frame.x+frame.width-(2*rayon+2);
         }
         
-        //Collision filet joueur 1
+        //Collision filet joueur 1 et 3
         if((numJoueur == 1 || numJoueur==3) && x>490-(2*rayon)){
         	x=490-(2*rayon);
         }
         
-        //Collision filet joueur 2
+        //Collision filet joueur 2 et 4
         if((numJoueur == 2 || numJoueur==4) && x<510){
         	x=510;
         }

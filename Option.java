@@ -19,7 +19,7 @@ import javax.swing.JRadioButton;
 
 public class Option extends JFrame {
     private JRadioButton bRed = new JRadioButton("Rouge");
-    private  JRadioButton bYellow = new JRadioButton("Jaune");
+    private JRadioButton bYellow = new JRadioButton("Jaune");
     private JRadioButton bBlue = new JRadioButton("Bleu");
     private JRadioButton bWhite = new JRadioButton("Blanc");
     private JRadioButton bPink = new JRadioButton("Rose");
@@ -27,10 +27,10 @@ public class Option extends JFrame {
     private JRadioButton bOrange = new JRadioButton("Orange");
         
         
-    private GridLayout gridLayoutballe;
-    private JPanel Balle;
+    //private GridLayout gridLayoutballe;
+    //private JPanel Balle;
        
-    private  JRadioButton j1Red = new JRadioButton("Rouge");
+    private JRadioButton j1Red = new JRadioButton("Rouge");
     private JRadioButton j1Yellow = new JRadioButton("Jaune");
     private JRadioButton j1Blue = new JRadioButton("Bleu");
     private JRadioButton j1White = new JRadioButton("Blanc");
@@ -38,32 +38,39 @@ public class Option extends JFrame {
     private JRadioButton j1Green = new JRadioButton("Vert");
     private JRadioButton j1Orange = new JRadioButton("Orange");
    
-    private GridLayout gridLayoutJ1;
-    private JPanel J1;
     
-    private  JRadioButton j2Red = new JRadioButton("Rouge");
+    private JRadioButton j2Red = new JRadioButton("Rouge");
     private JRadioButton j2Yellow = new JRadioButton("Jaune");
     private JRadioButton j2Blue = new JRadioButton("Bleu");
-    private  JRadioButton j2White = new JRadioButton("Blanc");
+    private JRadioButton j2White = new JRadioButton("Blanc");
     private JRadioButton j2Pink = new JRadioButton("Rose");
     private JRadioButton j2Green = new JRadioButton("Vert");
     private JRadioButton j2Orange = new JRadioButton("Orange");
+    
+    
+    private JRadioButton j3Red = new JRadioButton("Rouge");
+    private JRadioButton j3Yellow = new JRadioButton("Jaune");
+    private JRadioButton j3Blue = new JRadioButton("Bleu");
+    private JRadioButton j3White = new JRadioButton("Blanc");
+    private JRadioButton j3Pink = new JRadioButton("Rose");
+    private JRadioButton j3Green = new JRadioButton("Vert");
+    private JRadioButton j3Orange = new JRadioButton("Orange");
+    
+    
+    private JRadioButton j4Red = new JRadioButton("Rouge");
+    private JRadioButton j4Yellow = new JRadioButton("Jaune");
+    private JRadioButton j4Blue = new JRadioButton("Bleu");
+    private JRadioButton j4White = new JRadioButton("Blanc");
+    private JRadioButton j4Pink = new JRadioButton("Rose");
+    private JRadioButton j4Green = new JRadioButton("Vert");
+    private JRadioButton j4Orange = new JRadioButton("Orange");
    
-    private GridLayout gridLayoutJ2;
-    private JPanel J2;
-    
-    private BoxLayout boxLayoutPrincipal;
-    private JLabel balle;
-    private JLabel j1;
-    private JLabel j2;
-    
-    private ButtonGroup groupe1;
-    private ButtonGroup groupe2;
-    private ButtonGroup groupe3;
 
     public static Color cb;
     public static Color cj1;
     public static Color cj2;
+    public static Color cj3;
+    public static Color cj4;
     private JButton jButtonRetour=new JButton("Menu");
    
     public Option() {
@@ -75,12 +82,18 @@ public class Option extends JFrame {
         Box panneauRadio1 = Box.createHorizontalBox();
         Box panneauRadio2 = Box.createHorizontalBox();
         Box panneauRadio3 = Box.createHorizontalBox();
+        Box panneauRadio4 = Box.createHorizontalBox();
+        Box panneauRadio5 = Box.createHorizontalBox();
         
-        JLabel balle=new JLabel("Balle                     ");
+        JLabel balle = new JLabel("Balle                     ");
         balle.setForeground( Color.black);
-        JLabel j1=   new JLabel("Joueur 1              ");
+        JLabel j1 = new JLabel("Joueur 1              ");
         balle.setForeground(Color.black);
-        JLabel j2=new JLabel("Joueur 2              ");
+        JLabel j2 = new JLabel("Joueur 2              ");
+        balle.setForeground(Color.black);
+        JLabel j3 = new JLabel("Joueur 3              ");
+        balle.setForeground(Color.black);
+        JLabel j4 = new JLabel("Joueur 4              ");
         balle.setForeground(Color.black);
         
         JPanel Balle = new JPanel();
@@ -163,6 +176,56 @@ public class Option extends JFrame {
         J2.add(panneauRadio3);
         boxLayoutPrincipal.add(J2);
         
+        
+        JPanel J3 = new JPanel();
+        J3.setLayout(new GridLayout());
+        ButtonGroup groupe4 = new ButtonGroup();
+        
+        
+        groupe4.add(j3Red);
+        groupe4.add(j3Yellow);
+        groupe4.add(j3Blue);
+        groupe4.add(j3White);
+        groupe4.add(j3Pink);
+        groupe4.add(j3Green);
+        groupe4.add(j3Orange);
+        panneauRadio4.add(j3);
+        panneauRadio4.add(j3Red);
+        panneauRadio4.add(j3Yellow);
+        panneauRadio4.add(j3Blue);
+        panneauRadio4.add(j3White);
+        panneauRadio4.add(j3Pink);
+        panneauRadio4.add(j3Green);
+        panneauRadio4.add(j3Orange);
+        
+        J3.add(panneauRadio4);
+        boxLayoutPrincipal.add(J3);
+        
+        
+        JPanel J4 = new JPanel();
+        J3.setLayout(new GridLayout());
+        ButtonGroup groupe5 = new ButtonGroup();
+        
+        
+        groupe5.add(j4Red);
+        groupe5.add(j4Yellow);
+        groupe5.add(j4Blue);
+        groupe5.add(j4White);
+        groupe5.add(j4Pink);
+        groupe5.add(j4Green);
+        groupe5.add(j4Orange);
+        panneauRadio5.add(j4);
+        panneauRadio5.add(j4Red);
+        panneauRadio5.add(j4Yellow);
+        panneauRadio5.add(j4Blue);
+        panneauRadio5.add(j4White);
+        panneauRadio5.add(j4Pink);
+        panneauRadio5.add(j4Green);
+        panneauRadio5.add(j4Orange);
+        
+        J4.add(panneauRadio5);
+        boxLayoutPrincipal.add(J4);
+        
        
         JPanel menu = new JPanel();
         menu.setLayout(new GridLayout());
@@ -195,6 +258,22 @@ public class Option extends JFrame {
         j2Green.addActionListener(gb);
         j2Orange.addActionListener(gb);
         
+        j3Red.addActionListener(gb);
+        j3Yellow.addActionListener(gb);
+        j3Blue.addActionListener(gb);
+        j3White.addActionListener(gb);
+        j3Pink.addActionListener(gb);
+        j3Green.addActionListener(gb);
+        j3Orange.addActionListener(gb);
+        
+        j4Red.addActionListener(gb);
+        j4Yellow.addActionListener(gb);
+        j4Blue.addActionListener(gb);
+        j4White.addActionListener(gb);
+        j4Pink.addActionListener(gb);
+        j4Green.addActionListener(gb);
+        j4Orange.addActionListener(gb);
+    
         jButtonRetour.addActionListener(gb); 
         
         this.pack();
@@ -229,60 +308,108 @@ public class Option extends JFrame {
             else if (bWhite.isSelected()) {
                 cb=Color.WHITE;
             }
-                else if (bPink.isSelected()) {
+            else if (bPink.isSelected()) {
                 cb=Color.PINK;
-                }
-                else if (bGreen.isSelected()) {
-                cb=Color.GREEN;
-                }
-                else if (bOrange.isSelected()) {
-                    cb=Color.ORANGE;
-                }
-                if (e.getSource()==j1Red) {
-                    cj1=Color.RED;
-                }
-                else if (j1Yellow.isSelected()) {
-                    cj1=Color.YELLOW;
-                
-                }
-                else if (j1Blue.isSelected()) {
-                    cj1=Color.BLUE;
-                    
-                }
-                else if (j1White.isSelected()) {
-                    cj1=Color.WHITE;
-                }
-                else if (j1Pink.isSelected()) {
-                        cj1=Color.PINK;    
-                    }
-                else if (j1Green.isSelected()) {
-                        cj1=Color.GREEN;
-                    }
-                else if (j1Orange.isSelected()) {
-                        cj1=Color.ORANGE;
-                    }
-                if (j2Red.isSelected()) {
-                    cj2=Color.RED;
-                }
-                else if (j2Yellow.isSelected()) {
-                    cj2=Color.YELLOW;
-                }
-                else if (j2Blue.isSelected()) {
-                    cj2=Color.BLUE;
-                }
-                else if (j2White.isSelected()) {
-                    cj2=Color.WHITE;
-                }
-                else if (j2Pink.isSelected()) {
-                    cj2=Color.PINK;   
-                }
-                else if (j2Green.isSelected()) {
-                    cj2=Color.GREEN;   
-                }
-                else if (j2Orange.isSelected()) {
-                    cj2=Color.ORANGE;
-                }
             }
+            else if (bGreen.isSelected()) {
+                cb=Color.GREEN;
+            }
+            else if (bOrange.isSelected()) {
+                cb=Color.ORANGE;
+            }
+            
+            
+            if (e.getSource()==j1Red) {
+                cj1=Color.RED;
+            }
+            else if (j1Yellow.isSelected()) {
+                cj1=Color.YELLOW;
+            }
+            else if (j1Blue.isSelected()) {
+                 cj1=Color.BLUE;        
+            }
+            else if (j1White.isSelected()) {
+                 cj1=Color.WHITE;
+            }
+            else if (j1Pink.isSelected()) {
+                 cj1=Color.PINK;    
+            }
+            else if (j1Green.isSelected()) {
+                 cj1=Color.GREEN;
+            }
+            else if (j1Orange.isSelected()) {
+                 cj1=Color.ORANGE;
+            }
+            
+            
+            if (j2Red.isSelected()) {
+                 cj2=Color.RED;
+            }
+            else if (j2Yellow.isSelected()) {
+                 cj2=Color.YELLOW;
+            }
+            else if (j2Blue.isSelected()) {
+                 cj2=Color.BLUE;
+            }
+            else if (j2White.isSelected()) {
+                 cj2=Color.WHITE;
+            }
+            else if (j2Pink.isSelected()) {
+                 cj2=Color.PINK;   
+            }
+            else if (j2Green.isSelected()) {
+                 cj2=Color.GREEN;   
+            }
+            else if (j2Orange.isSelected()) {
+                 cj2=Color.ORANGE;
+            }
+            
+            
+              if (j3Red.isSelected()) {
+                   cj3=Color.RED;
+              }
+              else if (j3Yellow.isSelected()) {
+                   cj3=Color.YELLOW;
+              }
+              else if (j3Blue.isSelected()) {
+                   cj3=Color.BLUE;
+              }
+              else if (j3White.isSelected()) {
+                   cj3=Color.WHITE;
+              }
+              else if (j3Pink.isSelected()) {
+                   cj3=Color.PINK;   
+              }
+              else if (j3Green.isSelected()) {
+                   cj3=Color.GREEN;   
+              }
+              else if (j3Orange.isSelected()) {
+                   cj3=Color.ORANGE;
+              }
+              
+              
+              if (j4Red.isSelected()) {
+                   cj4=Color.RED;
+              }
+              else if (j4Yellow.isSelected()) {
+                   cj4=Color.YELLOW;
+              }
+              else if (j4Blue.isSelected()) {
+                   cj4=Color.BLUE;
+              }
+              else if (j4White.isSelected()) {
+                   cj4=Color.WHITE;
+              }
+              else if (j4Pink.isSelected()) {
+                   cj4=Color.PINK;   
+              }
+              else if (j4Green.isSelected()) {
+                   cj4=Color.GREEN;   
+              }
+              else if (j4Orange.isSelected()) {
+                   cj4=Color.ORANGE;
+              }
+          }
          }
     public static Color getCouleurB (){
         return cb;
@@ -292,6 +419,12 @@ public class Option extends JFrame {
     }
     public static Color getCouleurJ2 (){
         return cj2;
+    }
+    public static Color getCouleurJ3 (){
+        return cj3;
+    }
+    public static Color getCouleurJ4 (){
+        return cj4;
     }
     public static void main(String[] args) {
             new Option();
