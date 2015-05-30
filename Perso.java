@@ -50,6 +50,14 @@ public class Perso{
 			g.setColor(ColJ2);
 			g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
 		}
+        if(numJoueur == 3){
+                g.setColor(Color.white);
+                g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+        }
+        if(numJoueur == 4){
+                g.setColor(Color.white);
+                g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
+        }
     }
 	
 	public int getXCentre(){
@@ -75,12 +83,12 @@ public class Perso{
         }
         
         //Collision filet joueur 1
-        if(numJoueur == 1 && x>frame.width/2 - 10 - (2*rayon)){
+        if((numJoueur == 1 || numJoueur==3) && x>490-(2*rayon)){
         	x=490-(2*rayon);
         }
         
         //Collision filet joueur 2
-        if(numJoueur == 2 && x<frame.width/2 + 10){
+        if((numJoueur == 2 || numJoueur==4) && x<510){
         	x=510;
         }
         
