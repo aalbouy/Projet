@@ -1,11 +1,10 @@
-
+package volemon;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -13,6 +12,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+/**
+ * Classe qui permet de jouer à 4 joueurs
+ */
 public class jeu4 extends JFrame {
     
     //Attributs
@@ -36,9 +38,12 @@ public class jeu4 extends JFrame {
     public static void main(String[] args) {
         jeu4 Monjeu = new jeu4();
     }
-    
-    
-    //Constructeur
+
+
+    /**
+     * Constructeur du mode 4 joueurs 
+     * @author Volley3000
+     */
     public jeu4() {        
         setSize(1000,600);
         
@@ -69,7 +74,11 @@ public class jeu4 extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    
+
+    /**
+     * Permet d'afficher le jeu
+     * @param g
+     */
     public void paint( Graphics g ) {
         // remplir le buffer de noir
         buffer.setColor(Color.black);
@@ -126,8 +135,11 @@ public class jeu4 extends JFrame {
                 temps++;
         }
     }
-    
-    
+
+
+    /**
+     * Permet de lancer le jeu
+     */
     public void boucle_principale_jeu(){
         //init
         
