@@ -1,14 +1,12 @@
-
+package volemon;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-
+/**
+ * Classe du menu option
+ * @author Volley3000
+ * @version 3.0
+ */
 public class Option extends JFrame {
     private JRadioButton bRed = new JRadioButton("Rouge");
     private JRadioButton bYellow = new JRadioButton("Jaune");
@@ -72,7 +74,11 @@ public class Option extends JFrame {
     public static Color cj3;
     public static Color cj4;
     private JButton jButtonRetour=new JButton("Menu");
-   
+    /**
+         * Constructeur du menu option
+         * @author Volley3000
+         */
+
     public Option() {
         
         Box boxLayoutPrincipal = Box.createVerticalBox();
@@ -283,7 +289,10 @@ public class Option extends JFrame {
                
       
     }
-    
+    /**
+        *  Mise en place des commandes boutons
+        * @author Volley3000
+        */
     public class GestionBouton implements ActionListener { 
         public void actionPerformed(ActionEvent e) { 
             // test des valeur de e.getSource()
@@ -411,18 +420,45 @@ public class Option extends JFrame {
               }
           }
          }
+    /**
+         * Méthode qui retourne la couleur choisie pour la balle 
+         * @author Volley3000
+         * @return la couleur choisie
+         */
     public static Color getCouleurB (){
         return cb;
     }
+    /**
+         *  Méthode qui retourne la couleur choisie pour le joueur 1
+         * @author Volley3000
+         * @return la couleur choisie
+         */
+
+
     public static Color getCouleurJ1 (){
         return cj1;
     }
+    /**
+         *  Méthode qui retourne la couleur choisie pour le joueur 3
+         * @author Volley3000
+         * @return la couleur choisie
+         */
     public static Color getCouleurJ2 (){
         return cj2;
     }
+    /**
+         *  Méthode qui retourne la couleur choisie pour le joueur 3
+         * @author Volley3000
+         * @return la couleur choisie
+         */
     public static Color getCouleurJ3 (){
         return cj3;
     }
+    /**
+         *  Méthode qui retourne la couleur choisie pour le joueur 4
+         * @author Volley3000
+         * @return la couleur choisie
+         */
     public static Color getCouleurJ4 (){
         return cj4;
     }

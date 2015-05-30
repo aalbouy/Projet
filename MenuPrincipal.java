@@ -1,26 +1,25 @@
-import java.awt.BorderLayout;
+package volemon;
+
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+/**
+ * Classe qui permet l'affichage du menu principal
+ * @author Volley3000
+ * @version 3.0
+ */
 public class MenuPrincipal extends JFrame implements ActionListener {
 	
 	
 	
-   //fenetre principale
+   
     private JButton jButtonDeuxJoueurs= new JButton("2 Joueurs");
     private JButton jButtonQuatreJoueurs= new JButton("4 Joueurs");
     private JButton jButtonOptions =new JButton("Options"); 
@@ -31,7 +30,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     
     //private ImageIcon wallpaper = new ImageIcon("C:/tennis.jpg");
     
-    
+    /**
+         * Constructeur du menu principal
+         * @author Volley3000
+         * 
+         */
+
     public MenuPrincipal() {
     	super();
     	this.setTitle("Menu Principal");
@@ -100,7 +104,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     }
     
     
-    //classe interne d'écoute
+    /**
+         * Mise en place des commandes boutons
+         * @author Volley3000
+         */
        public class GestionBouton implements ActionListener { 
            public void actionPerformed(ActionEvent e) { 
                // test des valeur de e.getSource()
@@ -133,6 +140,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
                
                }
             }
+    /**
+         * Action quand on appuie sur les boutons du menu
+         * @author Volley3000
+         * @param e
+         */
     public void actionPerformed(ActionEvent e){
     	   
            

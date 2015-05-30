@@ -1,17 +1,22 @@
-
+package volemon;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
+
+/**
+ * Classe qui définit les règles du jeu et qui lance la partie
+ * @author Volley3000
+ * @version 3.0
+ */
 
 public class Jeu extends JFrame {
     
@@ -38,7 +43,10 @@ public class Jeu extends JFrame {
     }
     
     
-    //Constructeur
+	    /**
+	        * Constructeur de Jeu
+	        * @author Volley3000
+	        */   
     public Jeu() {        
         setSize(1000,600);
         
@@ -67,7 +75,12 @@ public class Jeu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    
+
+	    /**
+	     * Méthode qui affiche tous les éléments de jeu pour disputer la partie
+	     * @author Volley3000
+	     * @param g
+	     */	    
     public void paint( Graphics g ) {
         // remplir le buffer de noir
         buffer.setColor(Color.black);
@@ -123,7 +136,10 @@ public class Jeu extends JFrame {
         }
     }
     
-    
+	    /**
+	       * Méthode qui permet le mouvement de tous les éléments, les contacts, les rebonds
+	       * @author Volley3000
+	       */
     public void boucle_principale_jeu(){
         //init
         
@@ -223,7 +239,13 @@ public class Jeu extends JFrame {
         }
         
     	
-    	
+	    /**
+	       * Méthode permettant la collision entre le joueur et la balle
+	       * @author Volley3000
+	       * @param j
+	       * @param ball
+	       * @return vrai s'il y a collision
+	       */
     public boolean collisionJoueur (Perso j, Balle ball){
 		boolean collision = false;
 		double d = Math.pow(ball.getXCentre()-j.getXCentre(), 2) +  Math.pow(ball.getYCentre()-j.getYCentre(), 2);
@@ -235,7 +257,13 @@ public class Jeu extends JFrame {
 		}
 		return collision;
 	}
-               
+	    /**
+	        * Méthode qui calcul l'angle d'arrivé de la balla par rapport au joueur
+	        * @author Volley3000
+	        * @param j
+	        * @param balle
+	        * @return la valeur de l'angle
+	        */
         public double angle (Perso j, Balle balle){
             double dx = balle.vx;
             double dy = balle.vy;
@@ -244,26 +272,50 @@ public class Jeu extends JFrame {
             double teta = Math.acos((x1*dx+y1*dy)/(Math.sqrt(x1*x1+y1*y1)*Math.sqrt(dx*dx+dy*dy)))+10;
             return teta;
     }
-        
+	    /**
+	         * Méthode qui permet le rebond de la balle, qui calcul la vitesse selon l'axe x après le rebond
+	         * @author Volley3000
+	         * @param teta
+	         * @param balle
+	         * @return la vitesse de déplacement dx
+	         */
         public double rebondX (double teta, Balle balle){
             double vx= balle.vx;
             double dx = -(Math.cos(2*teta)*vx);
             return dx;
         }
-        
+	    /**
+	        * Méthode qui permet le rebond de la balle, qui calcul la vitesse selon l'axe y après le rebond
+	        * @author Volley3000
+	        * @param teta
+	        * @param balle
+	        * @return la vitesse de déplacement dy 
+	        */
             public double rebondY (double teta, Balle balle){
                 double vy= balle.vy;
                 double dy = -(Math.cos(2*teta)*vy);            
                 return dy;
             }
-        
+	    /**
+	        * Méthode qui permet le rebond de la balle contre le mur, qui calcul la vitesse selon l'axe x après le rebond
+	        * @author Volley3000
+	        * @param balle
+	        */
+
            public void rebondMur (Balle balle){
         	   if(balle.getXCentre() < balle.rayon || balle.getXCentre() > Ecran.width - balle.rayon){
         		   balle.dx = -balle.dx;
         	   }
            }
-           
-           public boolean rebondFilet1 (Balle balle){
+
+
+    /**
+     * permet le rebond sur la partie supérieur du filet 
+     * @author volley3000
+     * @param balle
+     * @return vrai s'il y a contat
+     */
+    public boolean rebondFilet1 (Balle balle){
                
                if ((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509) && ((Ecran.height-80 >balle.y+2*balle.rayon)&& (balle.y+2*balle.rayon > Ecran.height-100))){
             	   //System.out.println("filet");
@@ -273,8 +325,13 @@ public class Jeu extends JFrame {
             	   return false;
                }
            }
-           
-           public boolean rebondFilet2 (Balle balle){
+
+    /**
+     * permet le rebond sur la partie latérale du filet 
+     * @param balle
+     * @return vrai s'il y a contact
+     */
+    public boolean rebondFilet2 (Balle balle){
                if((balle.x + 2*balle.rayon > 491 ) && (balle.x < 509)&&(balle.y+2*balle.rayon >Ecran.height-80)){
                    return true;
                }
@@ -282,7 +339,12 @@ public class Jeu extends JFrame {
                    return false;
                }
            }
-           
+	    /**
+	        * Mise en place des commandes boutons
+	        *@author Volley3000
+	        *@version 3.0
+	        * 
+	        */
            public class GestionTouche implements KeyListener {
         	   public void keyPressed(KeyEvent e) {
         		   int code = e.getKeyCode();

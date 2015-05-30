@@ -1,9 +1,13 @@
-
+package volemon;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
+/**
+ * Classe qui permet la création des joueurs 
+ * @author Volley3000
+ * @version 3.0
+ */
 public class Perso{
     
     //Attributs
@@ -21,9 +25,17 @@ public class Perso{
     public Color ColJ4=Option.getCouleurJ4();
     
     
-    //Méthodes
     
-    // Constructeur
+    
+    /**
+        * Constructeur des joueurs 
+        * @author Volley3000
+        * @version 3.0
+        * @param ax
+        * @param avitesse
+        * @param aframe
+        * @param joueur
+        */
     public Perso(int ax, float avitesse, Rectangle aframe, int joueur){
         x = ax;
         y = aframe.height-50;
@@ -38,6 +50,12 @@ public class Perso{
     }
      
 
+    /**
+         * Méthode qui permet d'afficher les joueurs
+         * @author Volley3000
+         * @param t
+         * @param g
+         */
 
 	public void draw (long t, Graphics g){
 		if(numJoueur == 1){
@@ -64,16 +82,29 @@ public class Perso{
                         g.fillArc(x, y, rayon*2, rayon*2, 0, 180);
                 }
     }
-	
+    /**
+        * Permet de récupérer la coordonnée en x du centre du joueur
+        * @author Volley3000
+        * @return la coordonnée en x
+        */
 	public int getXCentre(){
 		return x + rayon;
 	}
-	
+    /**
+         * Permet de récupérer la coordonnée en y du centre du joueur
+         * @author Volley3000
+         * @return la coordonnée en y
+         */
 	public int getYCentre(){
 		return y + rayon;
 	}
 
 
+    /**
+        * Méthode qui permet le déplacement des joueurs 
+        * @author Volley3000
+        * @param t
+        */
     public void move(long t){
     	//Mouvement horizontal
         x=x+(int)(vitesse*dx);
