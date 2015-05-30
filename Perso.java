@@ -75,12 +75,12 @@ public class Perso{
         }
         
         //Collision filet joueur 1
-        if(numJoueur == 1 && x>490-(2*rayon)){
+        if(numJoueur == 1 && x>frame.width/2 - 10 - (2*rayon)){
         	x=490-(2*rayon);
         }
         
         //Collision filet joueur 2
-        if(numJoueur == 2 && x<150){
+        if(numJoueur == 2 && x<frame.width/2 + 10){
         	x=510;
         }
         
